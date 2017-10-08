@@ -1,0 +1,28 @@
+.d1 {
+    width: 20%;
+    align-items: left;
+    margin: 0;
+
+}
+
+.d1 input {
+    height: 25px;
+    border: 1px solid #575450;
+    outline: none;
+    color: #000000;
+}
+
+.d1 button {
+    top: 0;
+    right: 0;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.d1 button:before {
+    content: "\f002";
+    font-family: FontAwesome, serif;
+    font-size: 16px;
+    color: #000000;
+}

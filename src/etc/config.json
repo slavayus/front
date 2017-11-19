@@ -7,5 +7,11 @@
     "name": "store",
     "host": "localhost",
     "port": "3306"
+  },
+  "stomp": {
+    "mq_username": "guest",
+    "mq_password": "guest",
+    "mq_vhost": "/",
+    "mq_url": "http://localhost:15674/stomp"
   }
 }

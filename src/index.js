@@ -5,7 +5,6 @@ import App from './App';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 
-
 // const searchButton = document.getElementsByClassName("searchButton")[0];
 // const element = document.getElementsByClassName("searchInput")[0];
 // const list = document.getElementById("searchList");
@@ -14,16 +13,50 @@ import axios from 'axios'
 import {serverPort} from "./etc/config.json"
 import {apiPrefix} from "./etc/config.json";
 
+import {stomp} from "./etc/config.json";
 
-// axios.defaults.withCredentials = true;
+const uniqueUserId = Date.now();
 
-axios.get(`${apiPrefix}:${serverPort}/products/posters`)
+
+axios.get(`${apiPrefix}:${serverPort}/products/${uniqueUserId}`)
     .then(function (response) {
         console.log(response.data);
     })
     .catch(function (error) {
         console.log(error);
     });
+
+
+const Stomp = require('stompjs');
+const ws = new WebSocket('ws://127.0.0.1:15674/ws');
+const client = Stomp.over(ws);
+
+
+const listenProductQueue = "/queue/products_" + uniqueUserId;
+
+function on_connect() {
+    let headers = {'id': 'first', 'auto-delete': 'true', durable: false, exclusive: false};
+    console.log(listenProductQueue);
+    client.subscribe(listenProductQueue, on_message, headers);
+}
+
+function on_connect_error(e) {
+    console.log(e);
+}
+
+function on_message(m) {
+    console.log("YEE");
+    console.log(m);
+}
+
+client.connect(
+    stomp.mq_username,
+    stomp.mq_password,
+    on_connect,
+    on_connect_error,
+    stomp.mq_vhost
+);
+
 
 /*
 const io = require('socket.io');

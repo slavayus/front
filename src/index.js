@@ -10,6 +10,28 @@ import {createStore} from 'redux'
 // const element = document.getElementsByClassName("searchInput")[0];
 // const list = document.getElementById("searchList");
 
+import axios from 'axios'
+import {serverPort} from "./etc/config.json"
+import {apiPrefix} from "./etc/config.json";
+
+
+// axios.defaults.withCredentials = true;
+
+axios.get(`${apiPrefix}:${serverPort}/products/posters`)
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+/*
+const io = require('socket.io');
+const socket = io.connect('http://localhost');
+const amqp_adapter = require('socket.io-amqp');
+io.adapter(amqp_adapter('amqp://localhost'));
+*/
+
 
 const data = [{
     description: 'Чехол Мистер Робот / Mr.Robot для Huawei P 6/7/8/9/10, Lite/Plus, Honor 6/7/8/4C/4X/G7',
@@ -67,5 +89,5 @@ ReactDOM.render(
     <Provider store={store}>
         <App/>
     </Provider>,
-    document.getElementById('searchList')
+    document.getElementById('context')
 );

@@ -3,18 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "font-awesome": "^4.3.0",
+    "lodash": "^4.17.4",
     "primereact": "^1.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-image": "^1.0.1",
     "react-redux": "5.0.6",
     "react-scripts": "1.0.14",
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "redux-socket.io": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

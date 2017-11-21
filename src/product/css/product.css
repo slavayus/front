@@ -1,7 +1,7 @@
 .product {
     width: 280px;
     height: 250px;
-    margin: 20px 20px 0 0;
+    margin: 20px 20px 0 20px;
     text-align: center;
     box-shadow: 0 0 15px black;
     background-color: white;
@@ -10,8 +10,8 @@
 
 .main {
     z-index: -1;
-    margin-left: 20%;
-    margin-right: 20%;
+    /*margin-left: 20%;*/
+    /*margin-right: 20%;*/
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -49,5 +49,4 @@ a{
     transition: 0.5s all;
     background-color: #9E9C9C;
     transform: scale(1.05);
-
 }

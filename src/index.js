@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/App';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 
@@ -18,7 +18,7 @@ import {stomp} from "./etc/config.json";
 const uniqueUserId = Date.now();
 
 
-axios.get(`${apiPrefix}:${serverPort}/products/${uniqueUserId}`)
+axios.get(`${apiPrefix}:${serverPort}/products/all/${uniqueUserId}`)
     .then(function (response) {
         console.log(response.data);
     })
@@ -32,7 +32,7 @@ const ws = new WebSocket('ws://127.0.0.1:15674/ws');
 const client = Stomp.over(ws);
 
 
-const listenProductQueue = "/queue/products_" + uniqueUserId;
+const listenProductQueue = "/queue/products_" + 23;
 
 function on_connect() {
     let headers = {'id': 'first', 'auto-delete': 'true', durable: false, exclusive: false};
@@ -58,23 +58,33 @@ client.connect(
 );
 
 
-/*
-const io = require('socket.io');
-const socket = io.connect('http://localhost');
-const amqp_adapter = require('socket.io-amqp');
-io.adapter(amqp_adapter('amqp://localhost'));
-*/
-
-
 const data = [{
-    description: 'Чехол Мистер Робот / Mr.Robot для Huawei P 6/7/8/9/10, Lite/Plus, Honor 6/7/8/4C/4X/G7',
-    img: 'image.jpg'
+    description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
+    img: 'cover_min.jpg'
 },
     {
         description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
-        img: 'poster.jpg'
+        img: 'hoodie_min.jpg'
+    },
+    {
+        description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
+        img: 'poster_min.jpg'
+    },
+    {
+        description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
+        img: 'singlet_min.jpg'
+    },
+    {
+        description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
+        img: 'sweatshirt_min.jpg'
+    },
+    {
+        description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
+        img: 't-shirt_min.jpg'
     }
 ];
+
+console.log(data);
 
 function search(entered = data, action) {
     /*if (action.type === 'addSearch') {

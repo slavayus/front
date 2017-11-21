@@ -1,6 +1,7 @@
 {
   "apiPrefix": "http://localhost",
   "serverPort": "3030",
+  "webSocket": "ws://127.0.0.1:15674/ws",
   "database": {
     "login": "root",
     "password": "root",

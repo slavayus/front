@@ -5,14 +5,14 @@ import HotProducts from "./HotProducts";
 class Hot extends Component {
     render() {
         return (
-            <HotProducts store={this.props.testList}/>
+            <HotProducts store={this.props.hotElements}/>
         );
     }
 }
 
 export default connect(
     state => ({
-        testList: state
+        hotElements: state
     }),
     dispatch => ({})
 )(Hot);

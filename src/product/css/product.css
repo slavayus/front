@@ -1,17 +1,17 @@
 .product {
     width: 280px;
     height: 250px;
-    margin: 20px 20px 0 20px;
+    margin: 50px 20px 0 20px;
     text-align: center;
     box-shadow: 0 0 15px black;
-    background-color: white;
+    background-color: #9E9C9C;
     position: relative;
 }
 
 .main {
     z-index: -1;
-    /*margin-left: 20%;*/
-    /*margin-right: 20%;*/
+    margin-left: 8%;
+    margin-right: 8%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -28,7 +28,7 @@
 }
 
 .productText{
-    color: #444;
+    color: #dadada;
     font-size: 18px;
     display: block !important;
     line-height: 24px !important;

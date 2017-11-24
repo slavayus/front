@@ -25,13 +25,11 @@ const Categories = createReactClass({
     render() {
         return (
             <div>
-                {console.log("-------------------------------------------------")}
-                {console.log(this.state.categories[3])}
-                <ol>
+                <ul id="list">
                     {this.state.categories.map((item, index) => (
-                        <li key={index}>{item.type}</li>
+                        <li key={index}><a>{item.type}</a></li>
                     ))}
-                </ol>
+                </ul>
             </div>
         );
     }

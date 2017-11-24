@@ -1,0 +1,37 @@
+#list {
+    position: absolute;
+    top: -9999em;
+    opacity: 0;
+    width: 200px;
+    transition: 0.5s opacity;
+    z-index: 100000;
+}
+
+#list a {
+    background: #9E9C9C;
+    color: #dadada;
+    padding: 10px 10px 10px 20px;
+    display: block;
+
+}
+
+.action:hover #list{
+    opacity: 1;
+    top: 0;
+}
+
+
+#list a:hover {
+    color: white;
+    padding: 10px 10px 9px 35px;
+    border-bottom: 1px outset black;
+    display: block;
+    transition: 0.5s all;
+    z-index: 100;
+}
+
+ul#list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

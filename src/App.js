@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Product from "../product/Product";
+import Product from "./product/Product";
 
 class App extends Component {
     render() {
         return (
-            <div>
-                {/*<HotProducts store={this.props.hotElements}/>*/}
-                <Product store={this.props.hotElements}/>
-            </div>
+            <Product store={this.props.testList}/>
         );
     }
 }
 
 export default connect(
     state => ({
-        hotElements: state
+        testList: state
     }),
     dispatch => ({})
 )(App);

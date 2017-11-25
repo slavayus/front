@@ -1,18 +1,46 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './css/product.css'
 import Element from './Element'
+import ProductStore from './ProductStore';
 
+const createReactClass = require('create-react-class');
 
-class Product extends Component {
+const Product = createReactClass({
+    getInitialState() {
+        ProductStore.setUpConnection();
+        ProductStore.loadProducts(this.props.type);
+        return ProductStore.getProducts();
+    },
+
+    componentDidMount() {
+        ProductStore.addChangeListener(this.onChange);
+    },
+
+    componentWillUnmount() {
+        ProductStore.removeChangeListener(this.onChange);
+    },
+
+    onChange() {
+        this.setState(ProductStore.getProducts())
+    },
+
     render() {
-        return (
-            <div className='main'>
-                {this.props.store.map((item, index) => (
-                    <Element key={index} item={item}/>
-                ))}
-            </div>
-        );
+        if(this.state.products.length !== 0){
+            return (
+                <div className='main'>
+                    {this.state.products.map((item, index) => (
+                        <Element key={index} item={item}/>
+                    ))}
+                </div>
+            );
+        }else {
+            return(
+                <div id='empty'>
+                    <span>{ProductStore.getMessage()}</span>
+                </div>
+            )
+        }
     }
-}
+});
 
 export default Product;

@@ -70,6 +70,7 @@ INPUT[type="text"] {
 
 INPUT[type="text"]::placeholder{
     color:#dadada;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .searchButton{

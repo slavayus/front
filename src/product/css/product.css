@@ -34,6 +34,7 @@
     line-height: 24px !important;
     text-align: left;
     margin: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a{
@@ -49,4 +50,15 @@ a{
     transition: 0.5s all;
     background-color: #9E9C9C;
     transform: scale(1.05);
+}
+
+
+#empty{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px ;
+    margin: 20px;
+    color: #dadada;
 }

@@ -10,10 +10,12 @@ const Stomp = require('stompjs');
 const CategoriesStore = {
 
     setUpConnection() {
+        const uniqueUserId = Date.now();
+
         const ws = new WebSocket('ws://127.0.0.1:15674/ws');
         const client = Stomp.over(ws);
 
-        const listenTypeQueue = "/queue/product_types";
+        const listenTypeQueue = "/queue/product_types_"+uniqueUserId;
 
         function on_connect() {
             let headers = {'id': 'first', 'auto-delete': 'true', durable: false, exclusive: false};
@@ -39,7 +41,7 @@ const CategoriesStore = {
             stomp.mq_vhost
         );
 
-        axios.get(`${apiPrefix}:${serverPort}/products/alltypes/`)
+        axios.get(`${apiPrefix}:${serverPort}/products/alltypes?queueId=`+uniqueUserId)
             .then(function (response) {
                 console.log(response.data);
             })

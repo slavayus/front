@@ -37,15 +37,3 @@ const Categories = createReactClass({
 
 
 export default Categories;
-// this.state.notes
-//
-//
-// module.exports = createReactClass({
-//     render: function () {
-//         return (
-//             <div>
-//                 <h1> the list </h1>
-//             </div>
-//         )
-//     }
-// });

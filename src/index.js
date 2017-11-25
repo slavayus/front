@@ -18,7 +18,7 @@ import axios from 'axios'
 //
 // import {stomp} from "./etc/config.json";
 
-// const uniqueUserId = Date.now();
+const uniqueUserId = Date.now();
 //
 //
 // axios.get(`${apiPrefix}:${serverPort}/products/all/${uniqueUserId}`)

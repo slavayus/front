@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import Product from "../product/Product";
 
 class App extends Component {
+    static onSelectType(action){
+        console.log(action.target.getAttribute('type'));
+    }
+
     render() {
         return (
             <div>

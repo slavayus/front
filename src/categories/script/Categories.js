@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/categories.css'
 import CategoriesStore from '../store/CategoriesStore';
+import App from '../../App/App';
 
 const createReactClass = require('create-react-class');
 
@@ -26,8 +27,9 @@ const Categories = createReactClass({
         return (
             <div>
                 <ul id="list">
-                    {this.state.categories.map((item, index) => (
-                        <li key={index}><a>{item.type}</a></li>
+                    <li onClick={App.onSelectType}><a type={'Все продукты'}>Все продукты</a></li>
+                    {this.state.categories.map((item, index) =>(
+                        <li key={index} onClick={App.onSelectType}><a type={item.type}>{item.type}</a></li>
                     ))}
                 </ul>
             </div>

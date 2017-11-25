@@ -5,6 +5,7 @@
     width: 200px;
     transition: 0.5s opacity;
     z-index: 100000;
+    cursor:pointer;
 }
 
 #list a {

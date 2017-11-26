@@ -7,6 +7,8 @@ import {stomp} from "../../etc/config.json";
 
 const Stomp = require('stompjs');
 
+let unsubscribe;
+
 const CategoriesStore = {
 
     setUpConnection() {
@@ -57,11 +59,11 @@ const CategoriesStore = {
     },
 
     addChangeListener(callback) {
-        store.subscribe(callback);
+        unsubscribe = store.subscribe(callback);
     },
 
-    removeChangeListener(callback) {
-        store.unsubscribe(callback);
+    removeChangeListener() {
+        unsubscribe();
     }
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/categories.css'
 import CategoriesStore from '../store/CategoriesStore';
 import App from '../../App/App';
+import Link from "react-router-dom/es/Link";
 
 const createReactClass = require('create-react-class');
 
@@ -16,7 +17,7 @@ const Categories = createReactClass({
     },
 
     componentWillUnmount() {
-        CategoriesStore.removeChangeListener(this.onChange);
+        CategoriesStore.removeChangeListener();
     },
 
     onChange() {
@@ -26,9 +27,10 @@ const Categories = createReactClass({
     render() {
         return (
             <ul id="list">
-                <li onClick={App.onSelectType}><a type={'Все продукты'}>Все продукты</a></li>
+                <li onClick={App.onSelectType}><Link to='/products' type={'Все продукты'}>Все продукты</Link></li>
                 {this.state.categories.map((item, index) => (
-                    <li key={index} onClick={App.onSelectType}><a type={item.type}>{item.type}</a></li>
+                    <li key={index} onClick={App.onSelectType}><Link to='/products' type={item.type}>{item.type}</Link>
+                    </li>
                 ))}
             </ul>
         );

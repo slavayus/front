@@ -11,6 +11,8 @@ const uniqueUserId = Date.now();
 
 let message = 'Нет таких товаров:(';
 
+let unsubscribe;
+
 const ProductStore = {
 
     getMessage() {
@@ -86,6 +88,7 @@ const ProductStore = {
             axios.get(`${apiPrefix}:${serverPort}/products?type=${type}&queueId=${uniqueUserId}`)
                 .then(function (response) {
                     message = response.data;
+                    console.log(response.data);
                 })
                 .catch(function (error) {
                     message = error;
@@ -100,11 +103,11 @@ const ProductStore = {
     },
 
     addChangeListener(callback) {
-        store.subscribe(callback);
+        unsubscribe = store.subscribe(callback);
     },
 
-    removeChangeListener(callback) {
-        store.unsubscribe(callback);
+    removeChangeListener() {
+        unsubscribe();
     }
 };
 

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import Product from "../product/Product";
 import ProductStore from "../product/ProductStore";
 import Header from "../header/Header";
+import Categories from "../categories/script/Categories";
 
 let typeProduct = 'Все продукты';
 
@@ -23,9 +23,4 @@ class App extends Component {
     }
 }
 
-export default connect(
-    state => ({
-        hotElements: state
-    }),
-    dispatch => ({})
-)(App);
+export default App;

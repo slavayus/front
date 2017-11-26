@@ -7,6 +7,8 @@ import axios from 'axios'
 import {serverPort} from "../etc/config.json"
 import {apiPrefix} from "../etc/config.json";
 import {stomp} from "../etc/config.json";
+import Link from "react-router-dom/es/Link";
+import Categories from "../categories/script/Categories";
 
 const Stomp = require('stompjs');
 const uniqueUserId = Date.now();
@@ -23,7 +25,7 @@ class Header extends Component {
                     <nav className="nav">
                         <label htmlFor="nav-toggle" className="nav-toggle"/>
                         <h2 className="logo">
-                            <a href="//dbmast.ru/">Mr. Robot</a>
+                            <Link to='/'> Mr. Robot</Link>
                         </h2>
                         <ul>
                             <li><a>Продукты</a></li>
@@ -38,11 +40,11 @@ class Header extends Component {
 
                 <div id="header">
                     <div className="logo_max">
-                        <a href="//dbmast.ru/">Mr. Robot</a>
+                        <Link to='/'> Mr. Robot</Link>
                     </div>
                     <div id="elements">
                         <div className="action">Продукты
-                            <ul id="list"/>
+                            <Categories/>
                         </div>
                         <div className="action">Акции</div>
                         <div className="action">Сервис</div>

@@ -6,9 +6,12 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import Product from "./product/Product";
 import Categories from "./categories/script/Categories"
-import { ConnectedRouter} from 'react-router-redux'
-import { Route } from 'react-router'
-
+import {ConnectedRouter} from 'react-router-redux'
+import Navigation from "./navigation/Navigation";
+import {BrowserRouter, Route} from 'react-router-dom';
+import Header from "./header/Header";
+import Switch from "react-router-dom/es/Switch";
+import HashRouter from "react-router-dom/es/HashRouter";
 
 const data = [{
     description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',
@@ -35,6 +38,7 @@ const data = [{
         img: 't-shirt_min.jpg'
     }
 ];
+
 function search(entered = data, action) {
     /*if (action.type === 'addSearch') {
         return [
@@ -91,10 +95,13 @@ searchButton.addEventListener('click', () => {
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
+    <BrowserRouter>
+        <Navigation/>
+    </BrowserRouter>,
     document.getElementById('context')
 );
 
-ReactDOM.render(<Categories/>, document.getElementById('list'));
+// ReactDOM.render(
+//     <Categories/>,
+//     document.getElementById('list')
+// );

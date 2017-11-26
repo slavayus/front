@@ -17,7 +17,8 @@ const Product = createReactClass({
     },
 
     componentWillUnmount() {
-        ProductStore.removeChangeListener(this.onChange);
+        console.log('yee');
+        ProductStore.removeChangeListener();
     },
 
     onChange() {
@@ -25,7 +26,7 @@ const Product = createReactClass({
     },
 
     render() {
-        if(this.state.products.length !== 0){
+        if (this.state.products.length !== 0) {
             return (
                 <div className='main'>
                     {this.state.products.map((item, index) => (
@@ -33,8 +34,8 @@ const Product = createReactClass({
                     ))}
                 </div>
             );
-        }else {
-            return(
+        } else {
+            return (
                 <div id='empty'>
                     <span>{ProductStore.getMessage()}</span>
                 </div>

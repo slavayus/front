@@ -25,14 +25,12 @@ const Categories = createReactClass({
 
     render() {
         return (
-            <div>
-                <ul id="list">
-                    <li onClick={App.onSelectType}><a type={'Все продукты'}>Все продукты</a></li>
-                    {this.state.categories.map((item, index) =>(
-                        <li key={index} onClick={App.onSelectType}><a type={item.type}>{item.type}</a></li>
-                    ))}
-                </ul>
-            </div>
+            <ul id="list">
+                <li onClick={App.onSelectType}><a type={'Все продукты'}>Все продукты</a></li>
+                {this.state.categories.map((item, index) => (
+                    <li key={index} onClick={App.onSelectType}><a type={item.type}>{item.type}</a></li>
+                ))}
+            </ul>
         );
     }
 });

@@ -13,8 +13,16 @@ let message = 'Нет таких товаров:(';
 
 const ProductStore = {
 
-    getMessage(){
+    getMessage() {
         return message;
+    },
+
+    setUpMessage(m) {
+        message = m;
+    },
+
+    getStore() {
+        return store;
     },
 
     setUpConnection() {
@@ -30,7 +38,7 @@ const ProductStore = {
         }
 
         function on_connect_error(e) {
-            console.log(e);
+            message = e;
         }
 
         function on_message(m) {
@@ -42,6 +50,7 @@ const ProductStore = {
                     break;
                 }
                 case 'empty': {
+                    message = 'Нет таких товаров:(';
                     store.dispatch({type: 'CLEAR'});
                     break;
                 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './header/css/header.css';
 import App from './App/App';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -90,11 +90,11 @@ searchButton.addEventListener('click', () => {
 // );
 
 
-ReactDOM.render(<Categories/>, document.getElementById('list'));
-
 ReactDOM.render(
     <Provider store={store}>
         <App/>
     </Provider>,
     document.getElementById('context')
 );
+
+ReactDOM.render(<Categories/>, document.getElementById('list'));

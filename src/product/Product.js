@@ -17,7 +17,6 @@ const Product = createReactClass({
     },
 
     componentWillUnmount() {
-        console.log('yee');
         ProductStore.removeChangeListener();
     },
 
@@ -26,11 +25,15 @@ const Product = createReactClass({
     },
 
     render() {
+        // const imgUrl = "./img/".concat(this.props.item.image_min_version);
+
+        // const imgSrc = require(`${imgUrl}`);
+
         if (this.state.products.length !== 0) {
             return (
                 <div className='main'>
                     {this.state.products.map((item, index) => (
-                        <Element key={index} item={item}/>
+                            <Element key={index} item={item}/>
                     ))}
                 </div>
             );

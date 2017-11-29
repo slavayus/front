@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import Header from "../header/Header";
+import App from "../App/App";
 import {Route, Switch} from "react-router-dom";
-import ProductNavigation from "./ProductNavigation";
+import One from "../one/One";
 
 class Navigation extends Component {
     render() {
+        console.log("YEE");
         return (
             <div>
-                <Header/>
                 <Switch>
-                    {/*<Route exact path='/' component={Header}/>*/}
-                    <Route path='/products' component={ProductNavigation}/>
+                    <Route exact path='/products' component={App}/>
+                    <Route path='/products/:id' component={One}/>
                 </Switch>
             </div>
         )

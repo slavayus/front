@@ -2,6 +2,7 @@ import React from 'react';
 import './css/product.css'
 import Element from './Element'
 import ProductStore from './ProductStore';
+import Sort from "./Sort";
 
 const createReactClass = require('create-react-class');
 
@@ -28,8 +29,9 @@ const Product = createReactClass({
         if (this.state.products.length !== 0) {
             return (
                 <div className='main'>
+                    <Sort/>
                     {this.state.products.map((item, index) => (
-                            <Element key={index} item={item}/>
+                        <Element key={index} item={item}/>
                     ))}
                 </div>
             );
@@ -40,6 +42,13 @@ const Product = createReactClass({
                 </div>
             )
         }
+    },
+    sortBelow: function () {
+
+    },
+
+    sortAbove: function () {
+
     }
 });
 

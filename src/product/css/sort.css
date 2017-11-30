@@ -1,0 +1,34 @@
+.mainSort {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.sortTypeText {
+    display: flex;
+}
+
+.sortByPrice {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.sortButton {
+    border: none;
+    background: none;
+    color: #dadada;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    border-bottom: 1px outset #575757;
+    outline: none;
+    cursor: pointer;
+    margin-left: 20px;
+}

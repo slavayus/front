@@ -41,12 +41,6 @@ body {
 
 #left {
     display: flex;
-    justify-content: space-around;
-}
-
-#search {
-    display: flex;
-    justify-content: flex-start;
 }
 
 .action {
@@ -55,8 +49,6 @@ body {
 
 #elements {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 INPUT[type="text"] {

@@ -32,10 +32,6 @@
     cursor: pointer;
 }
 
-
-#byButton::before {
-}
-
 .oneImg {
     height: 60%;
     width: 60%;

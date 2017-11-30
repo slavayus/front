@@ -62,3 +62,17 @@ a{
     margin: 20px;
     color: #dadada;
 }
+
+.productPrice{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #dadada;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.product:hover .productPrice{
+    color: #ffffff;
+}

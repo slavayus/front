@@ -10,6 +10,7 @@ class Element extends Component {
             <Link to={`/products/${this.props.item.id}`} className='product'>
                 <img className="productImg" src={imgSrc} alt={"YEE"}/>
                 <span className="productText">{this.props.item.name}</span>
+                <span className="productPrice">{this.props.item.price}</span>
             </Link>
         );
     }

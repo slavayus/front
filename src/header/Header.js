@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import './css/header.css'
 import './css/header_mobile.css'
-import ProductStore from "../product/ProductStore";
-
-import axios from 'axios'
-import {serverPort} from "../etc/config.json"
-import {apiPrefix} from "../etc/config.json";
-import {stomp} from "../etc/config.json";
+import {apiPrefix, serverPort, stomp} from "../etc/config.json"
 import Link from "react-router-dom/es/Link";
 import Categories from "../categories/script/Categories";
+import SearchStore from "../search/SearchStore";
+import Redirect from "react-router-dom/es/Redirect";
 
 const Stomp = require('stompjs');
 const uniqueUserId = Date.now();
+const createReactClass = require('create-react-class');
 
-class Header extends Component {
+const Header = createReactClass({
+    getInitialState() {
+        return {redirect: false};
+    },
+
     render() {
         return (
             <div>
@@ -33,7 +35,7 @@ class Header extends Component {
                             <li><a href="#3">Сервис</a></li>
                             <li><a href="#4">Войти</a></li>
                             <li><input className='inputText' type="text" placeholder="Искать здесь..."
-                                       onKeyPress={Header.searchClickMobile}/></li>
+                                       onKeyPress={this.searchClickMobile}/></li>
                         </ul>
                     </nav>
                 </div>
@@ -52,103 +54,48 @@ class Header extends Component {
                     <div id="left">
                         <div id="enter" className="action">Войти</div>
                         <input type="text" placeholder="Искать здесь..." className='inputText'
-                               onKeyPress={Header.searchClickFull}/>
-                        <button type="submit" className="searchButton" onClick={Header.searchClickButton}/>
+                               onKeyPress={this.searchClickFull}/>
+                        <button type="submit" className="searchButton" onClick={this.searchClickButton}/>
+                        <Link to={'/search'}>
+                            <button type='submit' id='link_hidden'/>
+                        </Link>
                     </div>
                 </div>
             </div>);
-    }
+    },
 
-    static searchClickMobile(event) {
+    searchClickMobile(event) {
         if (event.key === 'Enter') {
             let mobileInputText = document.getElementsByClassName('inputText')[0];
             if (mobileInputText.value !== '') {
-                Header.getProducts(mobileInputText.value);
+                this.getProducts(mobileInputText.value);
             }
             mobileInputText.value = '';
         }
-    }
+    },
 
-    static searchClickFull(event) {
+    searchClickFull(event) {
         if (event.key === 'Enter') {
             let fullInputText = document.getElementsByClassName('inputText')[1];
             if (fullInputText.value !== '') {
-                Header.getProducts(fullInputText.value);
+                this.getProducts(fullInputText.value);
             }
             fullInputText.value = '';
         }
-    }
+    },
 
-    static getProducts(value) {
-
-        axios.get(`${apiPrefix}:${serverPort}/products/search?text=${value}&queueId=${uniqueUserId}`)
-            .then(function (response) {
-                ProductStore.setUpMessage(response.data);
-            })
-            .catch(function (error) {
-                ProductStore.setUpMessage(error);
-            });
-
-        Header.setUpConnection();
-
-        console.log(value);
-    }
-
-    static searchClickButton() {
+    searchClickButton() {
         let fullInputText = document.getElementsByClassName('inputText')[1];
         if (fullInputText.value !== '') {
-            Header.getProducts(fullInputText.value);
+            this.getProducts(fullInputText.value);
         }
         fullInputText.value = '';
+    },
+
+    getProducts(value) {
+        SearchStore.loadProducts(value);
+        document.getElementById('link_hidden').click();
     }
-
-    static setUpConnection() {
-
-        const ws = new WebSocket('ws://127.0.0.1:15674/ws');
-        const client = Stomp.over(ws);
-
-        const listenTypeQueue = "/queue/products_" + uniqueUserId;
-
-        function on_connect() {
-            let headers = {'id': 'first', 'auto-delete': 'true', durable: false, exclusive: false};
-            client.subscribe(listenTypeQueue, on_message, headers);
-        }
-
-        function on_connect_error(e) {
-            ProductStore.setUpMessage(e);
-        }
-
-        function on_message(m) {
-            let dataFromClient = JSON.parse(m.body);
-
-            switch (dataFromClient.status) {
-                case 'success': {
-                    ProductStore.getStore().dispatch({type: 'LOAD', data: dataFromClient.data});
-                    break;
-                }
-                case 'empty': {
-                    ProductStore.setUpMessage('Нет таких товаров:(');
-                    ProductStore.getStore().dispatch({type: 'CLEAR'});
-                    break;
-                }
-                case 'error': {
-                    ProductStore.getStore().dispatch({type: 'LOAD', data: dataFromClient.data});
-                    break;
-                }
-                default: {
-                }
-            }
-        }
-
-        client.connect(
-            stomp.mq_username,
-            stomp.mq_password,
-            on_connect,
-            on_connect_error,
-            stomp.mq_vhost
-        );
-    }
-
-}
+});
 
 export default Header;

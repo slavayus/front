@@ -1,9 +1,7 @@
 import {createStore} from 'redux'
 
 import axios from 'axios'
-import {serverPort} from "../etc/config.json"
-import {apiPrefix} from "../etc/config.json";
-import {stomp} from "../etc/config.json";
+import {apiPrefix, serverPort, stomp} from "../etc/config.json"
 
 const Stomp = require('stompjs');
 
@@ -11,17 +9,12 @@ const uniqueUserId = Date.now();
 
 let unsubscribe;
 
-const OneStore = {
-    getStore() {
-        return store;
-    },
-
+const SearchStore = {
     setUpConnection() {
-
         const ws = new WebSocket('ws://127.0.0.1:15674/ws');
         const client = Stomp.over(ws);
 
-        const listenTypeQueue = "/queue/element_" + uniqueUserId;
+        const listenTypeQueue = "/queue/products_" + uniqueUserId;
 
         function on_connect() {
             let headers = {'id': 'first', 'auto-delete': 'true', durable: false, exclusive: false};
@@ -41,11 +34,11 @@ const OneStore = {
                     break;
                 }
                 case 'empty': {
-                    store.dispatch({type: 'CLEAR', data: 'Нет такого товара:('});
+                    store.dispatch({type: 'CLEAR', data: 'Нет таких товаров:('});
                     break;
                 }
                 case 'error': {
-                    store.dispatch({type: 'CLEAR', data :dataFromClient.data});
+                    store.dispatch({type: 'CLEAR', data: dataFromClient.data});
                     break;
                 }
                 default: {
@@ -62,8 +55,8 @@ const OneStore = {
         );
     },
 
-    loadProducts(id) {
-        axios.get(`${apiPrefix}:${serverPort}/product/${id}?queueId=${uniqueUserId}`)
+    loadProducts(value) {
+        axios.get(`${apiPrefix}:${serverPort}/search?text=${value}&queueId=${uniqueUserId}`)
             .then(function (response) {
                 store.dispatch({type: 'CLEAR', data: response.data});
             })
@@ -111,4 +104,4 @@ function products(state = {
 const store = createStore(products);
 
 
-export default OneStore;
+export default SearchStore;

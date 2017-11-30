@@ -23,17 +23,19 @@ const One = createReactClass({
     },
 
     render() {
-        console.log(this.state.products.length);
-        if (this.state.products.length !== 0) {
+        console.log(this.state.products.status);
+        if (this.state.products.status) {
+
             return (
                 <div className='main'>
-                    {this.state.products.description}
+                    {this.state.products.data.description}
+                    <img src={require(`./img/${this.state.products.data.image_large_version}`)} alt={"YEE"}/>
                 </div>
             );
         } else {
             return (
                 <div id='empty'>
-                    <span>{OneStore.getMessage()}</span>
+                    <span>{this.state.products.data}</span>
                 </div>
             )
         }

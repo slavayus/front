@@ -64,7 +64,7 @@ INPUT[type="text"] {
     border: 1px solid #9E9C9C;
     outline: none;
     color: #dadada;
-    background-color: #9E9C9C;
+    background: none;
 
 }
 
@@ -99,7 +99,7 @@ INPUT[type="text"]::placeholder {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 776px) {
     .logo_max {
         background-color: #9E9C9C;
         height: 45px;

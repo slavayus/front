@@ -1,5 +1,7 @@
 import React from 'react';
 import OneStore from "./OneStore";
+import "./css/one.css";
+import Link from "react-router-dom/es/Link";
 
 const createReactClass = require('create-react-class');
 
@@ -23,14 +25,18 @@ const One = createReactClass({
     },
 
     render() {
-        console.log(this.state.products.status);
         if (this.state.products.status) {
-
             return (
-                <div className='main'>
-                    {this.state.products.data.description}
-                    <img src={require(`./img/${this.state.products.data.image_large_version}`)} alt={"YEE"}/>
-                </div>
+                    <div className={"one"}>
+                        <div className={"text_button"}>
+                            <div id={"description"}>{this.state.products.data.description}</div>
+                            <Link to={'/products'} id={"button_link"}>
+                                <button type="submit" id="byButton">Купить</button>
+                            </Link>
+                        </div>
+                        <img className={"oneImg"} src={require(`./img/${this.state.products.data.image_large_version}`)}
+                             alt={"YEE"}/>
+                    </div>
             );
         } else {
             return (

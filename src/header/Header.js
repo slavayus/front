@@ -1,14 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './css/header.css'
 import './css/header_mobile.css'
-import {apiPrefix, serverPort, stomp} from "../etc/config.json"
 import Link from "react-router-dom/es/Link";
 import Categories from "../categories/script/Categories";
 import SearchStore from "../search/SearchStore";
-import Redirect from "react-router-dom/es/Redirect";
 
-const Stomp = require('stompjs');
-const uniqueUserId = Date.now();
 const createReactClass = require('create-react-class');
 
 const Header = createReactClass({
@@ -30,7 +26,7 @@ const Header = createReactClass({
                             <Link to='/'> Mr. Robot</Link>
                         </h2>
                         <ul>
-                            <li><a>Продукты</a></li>
+                            <li><Link to={"/products"}>Продукты</Link></li>
                             <li><a href="#2">Акции</a></li>
                             <li><a href="#3">Сервис</a></li>
                             <li><a href="#4">Войти</a></li>

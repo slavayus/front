@@ -5,7 +5,6 @@ import One from "../one/One";
 
 class Navigation extends Component {
     render() {
-        console.log("YEE");
         return (
             <div>
                 <Switch>

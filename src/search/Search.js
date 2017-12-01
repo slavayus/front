@@ -2,13 +2,13 @@ import React from 'react';
 import '../product/css/product.css'
 import Element from '../product/Element'
 import SearchStore from './SearchStore';
+import SearchSort from "../sort/SearchSort";
 
 const createReactClass = require('create-react-class');
 
 const Search = createReactClass({
     getInitialState() {
         SearchStore.setUpConnection();
-        // SearchStore.loadProducts();
         return SearchStore.getProducts();
     },
 
@@ -28,6 +28,7 @@ const Search = createReactClass({
         if (this.state.products.status) {
             return (
                 <div className='main'>
+                    <SearchSort/>
                     {this.state.products.data.map((item, index) => (
                         <Element key={index} item={item}/>
                     ))}

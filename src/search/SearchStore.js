@@ -30,6 +30,7 @@ const SearchStore = {
 
             switch (dataFromClient.status) {
                 case 'success': {
+                    console.log(dataFromClient.data);
                     store.dispatch({type: 'LOAD', data: dataFromClient.data});
                     break;
                 }
@@ -77,6 +78,10 @@ const SearchStore = {
 
     removeChangeListener() {
         unsubscribe();
+    },
+
+    getStore(){
+        return store;
     }
 };
 

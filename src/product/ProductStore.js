@@ -19,10 +19,6 @@ const ProductStore = {
         return message;
     },
 
-    setUpMessage(m) {
-        message = m;
-    },
-
     getStore() {
         return store;
     },

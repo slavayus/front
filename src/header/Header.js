@@ -17,7 +17,7 @@ const Header = createReactClass({
             <div>
                 <div id="button_hidden">
                     <div className="logo_max">
-                        <a href="//dbmast.ru/">Mr. Robot</a>
+                        <Link to='/'> Mr. Robot</Link>
                     </div>
                     <input type="checkbox" id="nav-toggle" hidden/>
                     <nav className="nav">

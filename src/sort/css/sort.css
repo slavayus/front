@@ -13,6 +13,11 @@
     display: flex;
 }
 
+
+.sortButton:hover{
+    color: white;
+}
+
 .sortByPrice {
     display: flex;
     justify-content: space-around;

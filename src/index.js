@@ -1,17 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './header/css/header.css';
-import App from './App/App';
-import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import Product from "./product/Product";
-import Categories from "./categories/script/Categories"
-import {ConnectedRouter} from 'react-router-redux'
 import Navigation from "./navigation/Navigation";
-import {BrowserRouter, Route} from 'react-router-dom';
-import Header from "./header/Header";
-import Switch from "react-router-dom/es/Switch";
-import HashRouter from "react-router-dom/es/HashRouter";
+import {BrowserRouter} from 'react-router-dom';
 
 const data = [{
     description: 'Плакат Мистер Робот / Mr.Robot (Шелковая ткань)',

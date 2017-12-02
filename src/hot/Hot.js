@@ -26,7 +26,6 @@ const Hot = createReactClass({
     },
 
     render() {
-        console.log(this.state.products.data);
         if (this.state.products.status) {
             return (
                 <div id={"main"}>

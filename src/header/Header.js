@@ -26,8 +26,8 @@ const Header = createReactClass({
                             <Link to='/'> Mr. Robot</Link>
                         </h2>
                         <ul>
-                            <li><Link to={"/products"}>Продукты</Link></li>
-                            <li><a href="#2">Акции</a></li>
+                            <li><Link to={"/products-categories"}>Продукты</Link></li>
+                            <li><Link to={"/products"}>Акции</Link></li>
                             <li><a href="#3">Сервис</a></li>
                             <li><a href="#4">Войти</a></li>
                             <li><input className='inputText' type="text" placeholder="Искать здесь..."
@@ -44,7 +44,9 @@ const Header = createReactClass({
                         <div className="action">Продукты
                             <Categories/>
                         </div>
-                        <div className="action">Акции</div>
+                        <Link to={"/products"}>
+                            <div className="action">Акции</div>
+                        </Link>
                         <div className="action">Сервис</div>
                     </div>
                     <div id="left">

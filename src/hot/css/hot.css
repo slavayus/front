@@ -7,21 +7,20 @@
     color: #dadada;
 }
 
-#hotElements:hover {
+.hotElements:hover {
     color: white;
 }
 
-#hotElements:hover  #hotPrice{
+.hotElements:hover #hotPrice {
     --webkit-animation: blink2 3s linear infinite;
     animation: blink2 3s linear infinite;
 }
-
 
 a {
     text-decoration: none;
 }
 
-#hotElements {
+.hotElements {
     box-shadow: 0 1px 0 black;
     display: flex;
     flex-direction: row;
@@ -31,7 +30,6 @@ a {
 }
 
 #main {
-    box-shadow: 0 1px 0 black;
     margin: 0 8% 0;
     display: flex;
     flex-direction: column;
@@ -74,7 +72,6 @@ a {
     --webkit-animation: blink1 3s linear infinite;
     animation: blink1 3s linear infinite;
 }
-
 
 .hotImg {
     height: 40%;
@@ -136,7 +133,11 @@ a {
     }
 
     #main {
-        margin-top: 20px;
+        margin-top: 0;
+    }
+
+    .hotElements{
+        margin-top: 30px;
     }
 
     #oldPrice {
@@ -160,8 +161,18 @@ a {
         margin-bottom: 20px;
     }
 
-    #hotElements {
+    #main {
+        margin-top: 0;
+    }
+
+    .hotElements {
         flex-direction: column;
+        align-content: center;
+        margin-top: 20px;
+    }
+
+    #hotElementsWrap{
+        flex-direction: column-reverse;
         align-content: center;
     }
 

@@ -6,6 +6,7 @@
     transition: 0.5s opacity;
     z-index: 100000;
     cursor:pointer;
+    text-align: left;
 }
 
 #list a {
@@ -13,7 +14,6 @@
     color: #dadada;
     padding: 10px 10px 10px 20px;
     display: block;
-
 }
 
 .action:hover #list{
@@ -35,4 +35,29 @@ ul#list {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+#categories_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: #dadada;
+    list-style: none;
+    padding: 0;
+}
+
+
+#categories_list li{
+    width: 60%;
+    text-align: center;
+    border-bottom: 1px outset black;
+}
+
+#categories_list a {
+    display: block;
+    color: #dadada;
+    line-height: 43px;
 }

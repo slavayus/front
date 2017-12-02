@@ -45,6 +45,13 @@ body {
 
 .action {
     width: 150px;
+    color: #dadada;
+    text-align: center;
+}
+
+.action:hover{
+    text-decoration: none;
+    color: white;
 }
 
 #elements {

@@ -4,7 +4,7 @@ class HotElement extends Component {
     render() {
         if (this.props.id % 2) {
             return (
-                <div id={'hotElements'}>
+                <div className={'hotElements'} >
                     <div id={"text"}>
                         <div><span id="hotName">{this.props.item.product.name}</span></div>
                         <div><span id="oldPrice">{this.props.item.old_price}</span></div>
@@ -15,7 +15,7 @@ class HotElement extends Component {
             )
         } else {
             return (
-                <div id={'hotElements'}>
+                <div className={'hotElements'} id={'hotElementsWrap'}>
                     <img className={"hotImg"} src={require(`./img/${this.props.item.image_hot_version}`)} alt={"YEE"}/>
                     <div id={"text"}>
                         <div><span id="hotName">{this.props.item.product.name}</span></div>

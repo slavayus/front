@@ -49,6 +49,16 @@ body {
     text-align: center;
 }
 
+#enter{
+    width: 150px;
+    color: #dadada;
+    text-align: center;
+}
+
+#enter:hover{
+    color: white;
+}
+
 .action:hover{
     text-decoration: none;
     color: white;

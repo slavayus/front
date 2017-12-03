@@ -29,7 +29,7 @@ const Header = createReactClass({
                             <li><Link to={"/products-categories"}>Продукты</Link></li>
                             <li><Link to={"/products"}>Акции</Link></li>
                             <li><a href="#3">Сервис</a></li>
-                            <li><a href="#4">Войти</a></li>
+                            <li><Link to={"/login"}>Войти</Link></li>
                             <li><input className='inputText' type="text" placeholder="Искать здесь..."
                                        onKeyPress={this.searchClickMobile}/></li>
                         </ul>
@@ -50,7 +50,9 @@ const Header = createReactClass({
                         <div className="action">Сервис</div>
                     </div>
                     <div id="left">
-                        <div id="enter" className="action">Войти</div>
+                        <Link to={'/login/'}>
+                            <div id="enter" className="action">Войти</div>
+                        </Link>
                         <input type="text" placeholder="Искать здесь..." className='inputText'
                                onKeyPress={this.searchClickFull}/>
                         <button type="submit" className="searchButton" onClick={this.searchClickButton}/>

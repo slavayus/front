@@ -14,7 +14,7 @@ const LoginForm = ({
                        user
                    }) => (
     <MuiThemeProvider>
-    <Card className="container">
+    <Card className="container" containerStyle={{'backgroundColor':'#9E9C9C'}}>
         <form action="/" onSubmit={onSubmit}>
             <h2 className="card-heading">Login</h2>
 

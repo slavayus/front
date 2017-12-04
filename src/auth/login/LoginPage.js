@@ -40,14 +40,9 @@ class LoginPage extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
 
-
-        // create a string for an HTTP body message
-        const email = encodeURIComponent(this.state.user.email);
-        const password = encodeURIComponent(this.state.user.password);
-
         axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
-            email: email,
-            password: password
+            email: this.state.user.email,
+            password: this.state.user.password
         }).then(function (response) {
             console.log(response.data);
             if (response.data.success) {

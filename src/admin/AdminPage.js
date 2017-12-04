@@ -14,11 +14,9 @@ const AdminPage = createReactClass({
 
     checkAdmin(nextState, replace) {
         console.log("yee");
-        // const login = true;
-        // if (login) {
             replace('/')
-        // }
     },
+
     render() {
         return (
             <div className={"buttonList"}>

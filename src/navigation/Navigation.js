@@ -12,6 +12,14 @@ import AdminPage from "../admin/AdminPage";
 import UserPage from "../user/UserPage";
 
 class Navigation extends Component {
+    static checkAdmin(nextState, replace) {
+        // alert("YEE");
+        const login = false;
+        if (login !== 'admin') {
+            replace('/');
+        }
+    }
+
     render() {
         return (
             <div>
@@ -25,7 +33,7 @@ class Navigation extends Component {
                     <Route path='/signup' component={SignUpPage}/>
                     <Route path='/user' component={UserPage}/>
                     <Route path='/yee' component={YeePage}/>
-                    <Route path='/admin' component={AdminPage} onEnter={AdminPage.checkAdmin}/>
+                    <Route path='/admin' component={AdminPage} onEnter={Navigation.checkAdmin()}/>
                 </Switch>
             </div>
         )

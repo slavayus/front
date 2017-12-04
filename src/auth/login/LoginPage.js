@@ -3,6 +3,7 @@ import LoginForm from './LoginForm.js';
 
 import axios from 'axios'
 import {apiPrefix, serverPort} from "../../etc/config.json"
+import * as cookie from "react-cookies";
 
 
 let currentThis;
@@ -43,15 +44,16 @@ class LoginPage extends React.Component {
         axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
             email: this.state.user.email,
             password: this.state.user.password
-        }).then(function (response) {
+        }, {withCredentials: true}).then(function (response) {
             console.log(response.data);
             if (response.data.success) {
-                // success
+                cookie.save('user', response.data.data);
                 // change the component-container state
                 currentThis.setState({
                     errors: {}
                 });
-                console.log('The form is valid');
+
+                currentThis.props.history.push('/');
             } else {
                 // failure
                 const errors = response.data.errors ? response.data.errors : {};

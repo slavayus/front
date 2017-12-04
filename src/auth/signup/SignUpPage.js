@@ -1,9 +1,10 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import SignUpForm from './SignUpForm.js';
 
 
 import axios from 'axios'
 import {apiPrefix, serverPort} from "../../etc/config.json"
+import * as cookie from "react-cookies";
 
 let currentThis;
 
@@ -59,15 +60,16 @@ class SignUpPage extends React.Component {
             name: this.state.user.name,
             email: this.state.user.email,
             password: this.state.user.password
-        }).then(function (response) {
-            console.log(response.data);
+        }, {withCredentials: true}).then(function (response) {
             if (response.data.success) {
-                // success
+                cookie.save('user', response.data.data);
+
                 // change the component-container state
                 currentThis.setState({
                     errors: {}
                 });
-                console.log('The form is valid');
+
+                currentThis.props.history.push('/');
             } else {
                 // failure
                 const errors = response.data.errors ? response.data.errors : {};

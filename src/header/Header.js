@@ -4,6 +4,7 @@ import './css/header_mobile.css'
 import Link from "react-router-dom/es/Link";
 import Categories from "../categories/script/Categories";
 import SearchStore from "../search/SearchStore";
+import * as cookie from "react-cookies";
 
 const createReactClass = require('create-react-class');
 
@@ -50,9 +51,11 @@ const Header = createReactClass({
                         <div className="action">Сервис</div>
                     </div>
                     <div id="left">
-                        <Link to={'/login/'}>
+                        {cookie.load('user') ? <Link to={`/user`}>
+                            <div id="enter" className="action">Мой аккаунт</div>
+                        </Link> : <Link to={'/login/'}>
                             <div id="enter" className="action">Войти</div>
-                        </Link>
+                        </Link>}
                         <input type="text" placeholder="Искать здесь..." className='inputText'
                                onKeyPress={this.searchClickFull}/>
                         <button type="submit" className="searchButton" onClick={this.searchClickButton}/>

@@ -30,9 +30,9 @@ const Hot = createReactClass({
             return (
                 <div id={"main"}>
                     {this.state.products.data.map((item, index) => (
-                        <Link to={`/products/${item.product.id}`} id='hotLink'>
+                        <Link to={`/products/${item.product.id}`} key={index} id='hotLink'>
                             <HotElement key={index} item={item} id={index}/>
-                         </Link>
+                        </Link>
                     ))}
                 </div>
             );

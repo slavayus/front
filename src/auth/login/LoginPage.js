@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import LoginForm from './LoginForm.js';
 
 import axios from 'axios'

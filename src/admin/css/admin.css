@@ -1,0 +1,17 @@
+.buttonList{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    padding-top: 20px;
+}
+
+.buttonList div{
+    line-height: 40px;
+    border-bottom: 1px outset #dadada;
+    vertical-align: baseline;
+    width: 200px;
+    text-align: center;
+}

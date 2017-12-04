@@ -72,7 +72,7 @@ const ProductStore = {
 
     loadProducts(type) {
         if (type === 'Все продукты') {
-            axios.get(`${apiPrefix}:${serverPort}/products/all?queueId=${uniqueUserId}`)
+            axios.get(`${apiPrefix}:${serverPort}/products/all?queueId=${uniqueUserId}`, {withCredentials: true})
                 .then(function (response) {
                     message = response.data;
                     console.log(response.data);

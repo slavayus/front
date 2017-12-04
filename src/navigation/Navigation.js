@@ -8,12 +8,14 @@ import CategoriesMobile from "../categories/script/CategoriesMobile";
 import LoginPage from "../auth/login/LoginPage";
 import SignUpPage from "../auth/signup/SignUpPage";
 import YeePage from "./YeePage";
+import AdminPage from "../admin/AdminPage";
+import UserPage from "../user/UserPage";
 
 class Navigation extends Component {
     render() {
         return (
             <div>
-                {/*<Header/>*/}
+                <Header/>
                 <Switch>
                     <Route exact path='/' component={Hot}/>
                     <Route path='/products' component={ProductNavigation}/>
@@ -21,7 +23,9 @@ class Navigation extends Component {
                     <Route path='/search' component={Search}/>
                     <Route path='/login/' component={LoginPage}/>
                     <Route path='/signup' component={SignUpPage}/>
+                    <Route path='/user' component={UserPage}/>
                     <Route path='/yee' component={YeePage}/>
+                    <Route path='/admin' component={AdminPage} onEnter={AdminPage.checkAdmin}/>
                 </Switch>
             </div>
         )

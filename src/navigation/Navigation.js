@@ -7,12 +7,13 @@ import Hot from "../hot/Hot";
 import CategoriesMobile from "../categories/script/CategoriesMobile";
 import LoginPage from "../auth/login/LoginPage";
 import SignUpPage from "../auth/signup/SignUpPage";
+import YeePage from "./YeePage";
 
 class Navigation extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                {/*<Header/>*/}
                 <Switch>
                     <Route exact path='/' component={Hot}/>
                     <Route path='/products' component={ProductNavigation}/>
@@ -20,6 +21,7 @@ class Navigation extends Component {
                     <Route path='/search' component={Search}/>
                     <Route path='/login/' component={LoginPage}/>
                     <Route path='/signup' component={SignUpPage}/>
+                    <Route path='/yee' component={YeePage}/>
                 </Switch>
             </div>
         )

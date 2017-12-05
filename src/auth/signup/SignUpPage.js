@@ -9,15 +9,11 @@ import * as cookie from "react-cookies";
 let currentThis;
 
 class SignUpPage extends React.Component {
-    /**
-     * Class constructor.
-     */
     constructor(props) {
         super(props);
 
         currentThis = this;
 
-        // set the initial component state
         this.state = {
             errors: {},
             user: {
@@ -31,11 +27,6 @@ class SignUpPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
     }
 
-    /**
-     * Change the user object.
-     *
-     * @param {object} event - the JavaScript event object
-     */
     changeUser(event) {
         const field = event.target.name;
         const user = this.state.user;
@@ -46,16 +37,9 @@ class SignUpPage extends React.Component {
         });
     }
 
-    /**
-     * Process the form.
-     *
-     * @param {object} event - the JavaScript event object
-     */
     processForm(event) {
-        // prevent default action. in this case, action is the form submission event
         event.preventDefault();
 
-        // create an AJAX request
         axios.post(`${apiPrefix}:${serverPort}/auth/signup`, {
             name: this.state.user.name,
             email: this.state.user.email,
@@ -64,14 +48,12 @@ class SignUpPage extends React.Component {
             if (response.data.success) {
                 cookie.save('user', response.data.data);
 
-                // change the component-container state
                 currentThis.setState({
                     errors: {}
                 });
 
                 currentThis.props.history.push('/');
             } else {
-                // failure
                 const errors = response.data.errors ? response.data.errors : {};
                 errors.summary = response.data.message;
 
@@ -84,9 +66,6 @@ class SignUpPage extends React.Component {
         });
     }
 
-    /**
-     * Render the component.
-     */
     render() {
         return (
             <SignUpForm

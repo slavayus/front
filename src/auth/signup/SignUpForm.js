@@ -13,8 +13,14 @@ const SignUpForm = ({
                         errors,
                         user,
                     }) => (
-    <MuiThemeProvider>
-        <Card className="container" containerStyle={{'backgroundColor':'#9E9C9C'}}>
+    <MuiThemeProvider
+        style={{'backgroundColor': '#9E9C9C', 'borderColor': 'none', 'borderStyle': 'none', 'boxShadow': 'none'}}>
+        <Card className="container" containerStyle={{
+            'backgroundColor': '#9E9C9C',
+            'borderColor': 'none',
+            'borderStyle': 'none',
+            'boxShadow': 'none'
+        }}>
             <form action="/" onSubmit={onSubmit}>
                 <h2 className="card-heading">Sign Up</h2>
 

@@ -11,9 +11,9 @@ a:hover {
 }
 
 .container {
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
-    width: 700px;
+    border: none !important;
 }
 
 .card-heading {

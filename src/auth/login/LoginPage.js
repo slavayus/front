@@ -11,10 +11,6 @@ let currentThis;
 
 
 class LoginPage extends React.Component {
-
-    /**
-     * Class constructor.
-     */
     constructor(props) {
         super(props);
 
@@ -33,13 +29,7 @@ class LoginPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
     }
 
-    /**
-     * Process the form.
-     *
-     * @param {object} event - the JavaScript event object
-     */
     processForm(event) {
-        // prevent default action. in this case, action is the form submission event
         event.preventDefault();
 
         axios.post(`${apiPrefix}:${serverPort}/auth/login/salt`, {
@@ -49,23 +39,18 @@ class LoginPage extends React.Component {
 
                 const protectedPassword = sha1(sha1(currentThis.state.user.password) + salt);
 
-            console.log(protectedPassword);
-
-            axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
+                axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
                     email: currentThis.state.user.email,
                     password: protectedPassword
                 }, {withCredentials: true}).then(function (response) {
-                    console.log(response.data);
                     if (response.data.success) {
                         cookie.save('user', response.data.data);
-                        // change the component-container state
                         currentThis.setState({
                             errors: {}
                         });
 
-                        currentThis.props.history.push('/');
+                        currentThis.props.history.goBack();
                     } else {
-                        // failure
                         const errors = response.data.errors ? response.data.errors : {};
                         errors.summary = response.data.message;
 
@@ -80,11 +65,6 @@ class LoginPage extends React.Component {
         )
     }
 
-    /**
-     * Change the user object.
-     *
-     * @param {object} event - the JavaScript event object
-     */
     changeUser(event) {
         const field = event.target.name;
         const user = this.state.user;
@@ -95,10 +75,6 @@ class LoginPage extends React.Component {
         });
     }
 
-
-    /**
-     * Render the component.
-     */
     render() {
         return (
             <LoginForm

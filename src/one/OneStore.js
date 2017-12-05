@@ -1,9 +1,7 @@
 import {createStore} from 'redux'
 
 import axios from 'axios'
-import {serverPort} from "../etc/config.json"
-import {apiPrefix} from "../etc/config.json";
-import {stomp} from "../etc/config.json";
+import {apiPrefix, serverPort, stomp} from "../etc/config.json"
 
 const Stomp = require('stompjs');
 

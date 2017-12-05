@@ -21,6 +21,7 @@
     "react-scripts": "1.0.14",
     "redux": "3.7.2",
     "redux-socket.io": "^1.4.0",
+    "sha1": "^1.1.1",
     "sockjs": "^0.3.19",
     "stomp": "^0.1.1"
   },

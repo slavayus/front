@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm.js';
+import sha1 from 'sha1'
 
 import axios from 'axios'
 import {apiPrefix, serverPort} from "../../etc/config.json"
@@ -41,31 +42,42 @@ class LoginPage extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
 
-        axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
-            email: this.state.user.email,
-            password: this.state.user.password
+        axios.post(`${apiPrefix}:${serverPort}/auth/login/salt`, {
+            email: this.state.user.email
         }, {withCredentials: true}).then(function (response) {
-            console.log(response.data);
-            if (response.data.success) {
-                cookie.save('user', response.data.data);
-                // change the component-container state
-                currentThis.setState({
-                    errors: {}
-                });
+                const salt = response.data.data;
 
-                currentThis.props.history.push('/');
-            } else {
-                // failure
-                const errors = response.data.errors ? response.data.errors : {};
-                errors.summary = response.data.message;
+                const protectedPassword = sha1(sha1(currentThis.state.user.password) + salt);
 
-                currentThis.setState({
-                    errors
-                });
+            console.log(protectedPassword);
+
+            axios.post(`${apiPrefix}:${serverPort}/auth/login`, {
+                    email: currentThis.state.user.email,
+                    password: protectedPassword
+                }, {withCredentials: true}).then(function (response) {
+                    console.log(response.data);
+                    if (response.data.success) {
+                        cookie.save('user', response.data.data);
+                        // change the component-container state
+                        currentThis.setState({
+                            errors: {}
+                        });
+
+                        currentThis.props.history.push('/');
+                    } else {
+                        // failure
+                        const errors = response.data.errors ? response.data.errors : {};
+                        errors.summary = response.data.message;
+
+                        currentThis.setState({
+                            errors
+                        });
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
             }
-        }).catch(function (error) {
-            console.log(error);
-        });
+        )
     }
 
     /**

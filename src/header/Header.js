@@ -5,6 +5,7 @@ import Link from "react-router-dom/es/Link";
 import Categories from "../categories/script/Categories";
 import SearchStore from "../search/SearchStore";
 import * as cookie from "react-cookies";
+import UserPage from "../user/UserPage";
 
 const createReactClass = require('create-react-class');
 

@@ -49,17 +49,21 @@ body {
     text-align: center;
 }
 
-#enter{
+.sessionButtons {
+    display: flex;
+}
+
+#enter {
     width: 150px;
     color: #dadada;
     text-align: center;
 }
 
-#enter:hover{
+#enter:hover {
     color: white;
 }
 
-.action:hover{
+.action:hover {
     text-decoration: none;
     color: white;
 }

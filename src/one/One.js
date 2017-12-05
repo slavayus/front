@@ -57,9 +57,7 @@ const One = createReactClass({
                 <div className={"one"}>
                     <div className={"text_button"}>
                         <div id={"description"}>{this.state.products.data.description}</div>
-                        {/*<Link to={'/products'} id={"button_link"}>*/}
                         <button type="submit" id="byButton" onClick={this.wantToBuy}>Купить</button>
-                        {/*</Link>*/}
                     </div>
                     <img className={"oneImg"} src={require(`./img/${this.state.products.data.image_large_version}`)}
                          alt={"YEE"}/>

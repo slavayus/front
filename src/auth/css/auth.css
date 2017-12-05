@@ -11,9 +11,11 @@ a:hover {
 }
 
 .container {
-    margin: 0;
+    margin: 10%;
     text-align: center;
-    border: none !important;
+    border: none!important;
+    box-shadow: none!important;
+    background-color: #9E9C9C!important;
 }
 
 .card-heading {

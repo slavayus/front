@@ -82,6 +82,7 @@ class LoginPage extends React.Component {
                 onChange={this.changeUser}
                 errors={this.state.errors}
                 user={this.state.user}
+                history={this.props.history}
             />
         );
     }

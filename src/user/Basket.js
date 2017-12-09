@@ -34,7 +34,6 @@ const Basket = createReactClass({
     },
 
     render() {
-        console.log(this.state.products.data[0]);
         return (
             this.state.products.status ?
                 <div className='userMain'>

@@ -29,6 +29,7 @@
     border-bottom: 1px outset #575757;
     outline: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 #byButton:hover{

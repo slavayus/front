@@ -1,67 +1,55 @@
 import React from 'react';
 import {apiPrefix, serverPort} from "../etc/config.json"
 import cookie from 'react-cookies'
-import OrderStore from "./store/OrderStore";
-import Element from "../product/Element";
+import "./css/user.css"
+import Orders from './Orders'
+import Basket from "./Basket";
+import Link from "react-router-dom/es/Link";
 
 const createReactClass = require('create-react-class');
 
+
 const UserPage = createReactClass({
-
-    getInitialState() {
-        OrderStore.setUpConnection();
-        OrderStore.loadProducts();
-        return OrderStore.getProducts();
-    },
-
-    componentWillUnmount() {
-        OrderStore.removeChangeListener();
-    },
-
-    onChange() {
-        this.setState(OrderStore.getProducts())
-    },
-
-    componentDidMount() {
-        OrderStore.addChangeListener(this.onChange);
-        if (!cookie.load('user')) {
-            this.props.history.push('/login');
-        }
-    },
-
     logout: function () {
         cookie.remove('user');
         this.props.history.push('/');
     },
 
-    render() {
-        if (this.state.products.status) {
-            return (
-                <div className={"one"}>
-                    <button onClick={this.logout}>Выход</button>
-                    {/*<div className={"text_button"}>*/}
-                    {/*<div id={"description"}>{this.state.products.data.description}</div>*/}
-                    {/*<button type="submit" id="byButton" onClick={this.wantToBuy}>Купить</button>*/}
-                    {/*</div>*/}
-                    <div className='main'>
-                        <ul>
-                            {/*{console.log(this.state.products.data.products_snapshot)}*/}
-                            {this.state.products.data.map((item, index) => (
-                                <li key={'index'}>{item.products_snapshot.name}</li>
-                            ))}
-                        </ul>
-                    </div>
+    getInitialState: function () {
+        return {flag: 'order'};
+    },
 
+    setOrders() {
+        this.setState({flag: 'order'})
+    },
+
+    setBasket: function () {
+        this.setState({flag: 'basket'})
+    },
+
+    render() {
+
+        const userButtons =
+            <div id={'userButtonBlock'}>
+                <div id={'userButtonServer'}>
+                    <Link to={'/user/orders'}>
+                        <button type='submit' className='userButton'>Мои покупки</button>
+                    </Link>
+                    <Link to={'/user/basket'}>
+                        <button type='submit' className='userButton' onClick={this.setBasket}>Корзина</button>
+                    </Link>
                 </div>
-            );
-        } else {
-            return (
-                <div id='empty'>
-                    <button onClick={this.logout}>Выход</button>
-                    <span>{this.state.products.data}</span>
+                <button type='submit' className='userButton' onClick={this.logout}>Выход</button>
+            </div>;
+
+        return (
+            <div>
+                <div className={"oneUser"}>
+                    {userButtons}
+                    {this.props.match.params.section === 'orders' ? <Orders/> : <Basket/>}
                 </div>
-            )
-        }
+            </div>
+        )
     }
 });
 

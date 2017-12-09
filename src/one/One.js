@@ -48,7 +48,37 @@ const One = createReactClass({
         } else {
             this.props.history.push('/login');
         }
+    },
 
+    addToBasket: function () {
+        if (cookie.load('user')) {
+            if (cookie.load('basket')) {
+                let array = Array.from(cookie.load('basket'));
+                if (!array.includes(this.state.products.data.id)) {
+                    array.push(this.state.products.data.id);
+                }
+                cookie.save('basket', array);
+            } else {
+                cookie.save('basket', [this.state.products.data.id]);
+            }
+        } else {
+            this.props.history.push('/login');
+        }
+        this.setState(OneStore.getProducts());
+    },
+
+    deleteFromBasket: function () {
+        if (cookie.load('user')) {
+            let array = Array.from(cookie.load('basket'));
+            let index = array.indexOf(this.state.products.data.id);
+            if (index >= 0) {
+                array.splice(index, 1);
+            }
+            cookie.save('basket', array);
+        } else {
+            this.props.history.push('/login');
+        }
+        this.setState(OneStore.getProducts());
     },
 
     render() {
@@ -57,7 +87,18 @@ const One = createReactClass({
                 <div className={"one"}>
                     <div className={"text_button"}>
                         <div id={"description"}>{this.state.products.data.description}</div>
-                        <button type="submit" id="byButton" onClick={this.wantToBuy}>Купить</button>
+                        <div className={'buyAndBasket'}>
+                            <button type="submit" id="byButton" onClick={this.wantToBuy}>Купить</button>
+
+                            {!Array.from(cookie.load('basket')).includes(this.state.products.data.id) ?
+                                <button type="submit" id="byButton" onClick={this.addToBasket}>Добавить в
+                                    корзину</button>
+                                : <span> </span>}
+
+                            {Array.from(cookie.load('basket')).includes(this.state.products.data.id) ?
+                                <button type="submit" id="byButton" onClick={this.deleteFromBasket}>Удалить из
+                                    корзины</button> : <div></div>}
+                        </div>
                     </div>
                     <img className={"oneImg"} src={require(`./img/${this.state.products.data.image_large_version}`)}
                          alt={"YEE"}/>

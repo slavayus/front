@@ -23,7 +23,7 @@ class Navigation extends Component {
                     <Route path='/search' component={Search}/>
                     <Route path='/login/' component={LoginPage}/>
                     <Route path='/signup' component={SignUpPage}/>
-                    <Route path='/user' component={UserPage}/>
+                    <Route path='/user/:section' component={UserPage}/>
                     <Route path='/yee' component={YeePage}/>
                     <Route path='/admin' component={AdminPage}/>
                 </Switch>

@@ -11,6 +11,12 @@ let currentThis;
 
 
 class LoginPage extends React.Component {
+    componentDidMount() {
+        if (cookie.load('user')) {
+            this.props.history.push('/user');
+        }
+    }
+
     constructor(props) {
         super(props);
 

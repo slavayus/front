@@ -5,7 +5,6 @@ import Link from "react-router-dom/es/Link";
 import Categories from "../categories/script/Categories";
 import SearchStore from "../search/SearchStore";
 import * as cookie from "react-cookies";
-import UserPage from "../user/UserPage";
 
 const createReactClass = require('create-react-class');
 
@@ -19,13 +18,19 @@ const Header = createReactClass({
             <div>
                 <div id="button_hidden">
                     <div className="logo_max">
-                        <Link to='/'> Mr. Robot</Link>
+                        <div>
+                            <a href="http://192.168.43.170:3005">Mr.Robot</a>
+                            <Link to='/' className={"store"}>Store</Link>
+                        </div>
                     </div>
                     <input type="checkbox" id="nav-toggle" hidden/>
                     <nav className="nav">
                         <label htmlFor="nav-toggle" className="nav-toggle"/>
                         <h2 className="logo">
-                            <Link to='/'> Mr. Robot</Link>
+                            <div>
+                                <a href="http://192.168.43.170:3005">Mr.Robot</a>
+                                <Link to='/' className={"store"}>Store</Link>
+                            </div>
                         </h2>
                         <ul>
                             <li><Link to={"/products-categories"}>Продукты</Link></li>
@@ -40,7 +45,8 @@ const Header = createReactClass({
 
                 <div id="header">
                     <div className="logo_max">
-                        <Link to='/'> Mr. Robot</Link>
+                        <a href="http://192.168.43.170:3005">Mr.Robot</a>
+                        <Link to='/' className={"store"}>Store</Link>
                     </div>
                     <div id="elements">
                         <div className="action">Продукты

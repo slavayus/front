@@ -1,6 +1,5 @@
 import React from 'react';
-import {Card, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Card} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Link from "react-router-dom/es/Link";
 import PropTypes from 'prop-types';
@@ -22,7 +21,7 @@ const SignUpForm = ({
             'boxShadow': 'none'
         }}>
             <form action="/" onSubmit={onSubmit}>
-                <h2 className="card-heading">Sign Up</h2>
+                <h2 className="card-heading">Регистрация</h2>
 
                 {errors.summary && <p className="error-message">{errors.summary}</p>}
 
@@ -57,11 +56,10 @@ const SignUpForm = ({
                     />
                 </div>
 
-                <div className="button-line">
-                    <RaisedButton type="submit" label="Create New Account" primary/>
-                </div>
 
-                <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
+                <button className="button-line" type="submit">Зарегистрироваться</button>
+
+                <p id={"message-register"}>Уже есть аккаунт? <Link to={'/login'}>Войти</Link>.</p>
             </form>
         </Card>
     </MuiThemeProvider>

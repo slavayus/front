@@ -9,6 +9,12 @@ import * as cookie from "react-cookies";
 let currentThis;
 
 class SignUpPage extends React.Component {
+    componentDidMount() {
+        if (cookie.load('user')) {
+            this.props.history.push('/user');
+        }
+    }
+
     constructor(props) {
         super(props);
 

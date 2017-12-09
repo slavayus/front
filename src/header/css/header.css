@@ -12,9 +12,13 @@ body {
     margin: 0;
     text-shadow: rgba(255, 255, 255, .1) -1px -1px 1px, rgba(0, 0, 0, .6) 1px 1px 1px;
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 700;
     color: #dadada;
     text-transform: uppercase;
+}
+
+.logo_max a:hover {
+    color: #dadada;
 }
 
 .logo_max a {
@@ -51,6 +55,11 @@ body {
 
 .sessionButtons {
     display: flex;
+}
+
+.store{
+    font-weight: 100;
+    text-transform: none;
 }
 
 #enter {
@@ -124,6 +133,11 @@ INPUT[type="text"]::placeholder {
         align-content: flex-start;
         border-bottom: 1px outset #575757;
         box-shadow: 0 0 15px black !important;
+    }
+
+    .store{
+        font-weight: 100!important;
+        text-transform: none!important;
     }
 
     #header {

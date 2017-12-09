@@ -1,6 +1,5 @@
 import React from 'react';
-import {Card, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Card} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {MuiThemeProvider} from "material-ui";
 import Link from "react-router-dom/es/Link";
@@ -46,7 +45,7 @@ class LoginForm extends React.Component {
                 <MuiThemeProvider>
                     <Card className="container">
                         <form action="/" onSubmit={onSubmit}>
-                            <h2 className="card-heading">Login</h2>
+                            <div className="card-heading">Вход</div>
 
                             {errors.summary && <p className="error-message">{errors.summary}</p>}
 
@@ -61,32 +60,37 @@ class LoginForm extends React.Component {
                             </div>
 
                             <div className="field-line">
-                                <TextField
-                                    floatingLabelText="Password"
-                                    type="password"
-                                    name="password"
-                                    onChange={onChange}
-                                    errorText={errors.password}
-                                    value={user.password}
+                                <TextField id={"text-field"}
+                                           floatingLabelText="Password"
+                                           type="password"
+                                           name="password"
+                                           onChange={onChange}
+                                           errorText={errors.password}
+                                           value={user.password}
                                 />
                             </div>
 
-                            <div className="button-line">
-                                <RaisedButton type="submit" label="Log in"/>
-                            </div>
+                            <button className="button-line" type="submit">Войти</button>
 
-                            <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+                            <p id={"message-register"}>Еще нет аккаунта? <Link to={'/signup'}>Зарегистрироваться</Link>.
+                            </p>
+
+
+                            <FacebookLogin
+                                appId="2141240026103660"
+                                autoLoad={false}
+                                fields="name,email,picture"
+                                callback={this.responseFacebook}
+                                cssClass="social">
+                                <div class="social">
+                                    <i class="fa fa-facebook" aria-hidden="true"
+                                       onClick={this.responseFacebook}/>
+                                </div>
+                            </FacebookLogin>
                         </form>
                     </Card>
 
                 </MuiThemeProvider>
-                <FacebookLogin
-                    appId="2141240026103660"
-                    autoLoad={false}
-                    fields="name,email,picture"
-                    callback={this.responseFacebook}
-                    cssClass="my-facebook-button-class"
-                />
             </div>
         )
     }

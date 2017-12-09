@@ -37,7 +37,7 @@ const Orders = createReactClass({
             this.state.products.status ?
                 <div className='userMain'>
                     {this.state.products.data.map((item, index) => (
-                        <Link to={`/products/${item.products_snapshot.productId}`} className='product' key={index}>
+                        <Link to={`/snapshot/${item.products_snapshot.id}`} className='product' key={index}>
                             <img className="productImg"
                                  src={require(`../product/img/${item.products_snapshot.image_min_version}`)}
                                  alt={"YEE"}/>

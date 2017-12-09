@@ -10,6 +10,7 @@ import SignUpPage from "../auth/signup/SignUpPage";
 import YeePage from "./YeePage";
 import AdminPage from "../admin/AdminPage";
 import UserPage from "../user/UserPage";
+import Snapshot from "../product_snapshot/Snapshot";
 
 class Navigation extends Component {
     render() {
@@ -26,6 +27,7 @@ class Navigation extends Component {
                     <Route path='/user/:section' component={UserPage}/>
                     <Route path='/yee' component={YeePage}/>
                     <Route path='/admin' component={AdminPage}/>
+                    <Route path='/snapshot/:id' component={Snapshot}/>
                 </Switch>
             </div>
         )

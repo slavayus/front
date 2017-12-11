@@ -1,45 +1,41 @@
 import React from 'react';
 import "./css/admin.css"
+import Link from "react-router-dom/es/Link";
+import cookie from "react-cookies";
+import Orders from "./Orders";
 
 const createReactClass = require('create-react-class');
 
 const AdminPage = createReactClass({
-    addProduct: function () {
-        console.log("YEE");
+    logout: function () {
+        cookie.remove('user');
+        this.props.history.push('/');
     },
 
-    updateProduct: function () {
-        console.log("Yee");
-    },
-
-    checkAdmin(nextState, replace) {
-        console.log("yee");
-            replace('/')
-    },
 
     render() {
+
+        const adminButtons =
+            <div id={'adminButtonBlock'}>
+                <div id={'adminButtonServer'}>
+                    <Link to={'/admin/hot'}>
+                        <button type='submit' className='adminButton'>Акции</button>
+                    </Link>
+                    <Link to={'/admin/products'}>
+                        <button type='submit' className='adminButton'>Продукты</button>
+                    </Link>
+                    <Link to={'/admin/orders'}>
+                        <button type='submit' className='adminButton'>Покупки</button>
+                    </Link>
+                </div>
+                <button type='submit' className='adminButton' onClick={this.logout}>Выход</button>
+            </div>;
+
         return (
-            <div className={"buttonList"}>
-                <div onClick={this.addProduct}> Добавить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
-                <div onClick={this.updateProduct}> Изменить товар</div>
+            <div id={"adminPage"}>
+                {adminButtons}
+
+                {this.props.match.params.section === 'orders' ? <Orders/> : "YEE"}
             </div>
         );
     }

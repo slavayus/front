@@ -115,13 +115,13 @@ INPUT[type="text"]::placeholder {
     display: none;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1013px) {
     .action {
         width: 100px;
     }
 }
 
-@media only screen and (max-width: 776px) {
+@media only screen and (max-width: 866px) {
     .logo_max {
         background-color: #9E9C9C;
         height: 45px;

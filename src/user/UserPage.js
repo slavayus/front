@@ -19,14 +19,6 @@ const UserPage = createReactClass({
         return {flag: 'order'};
     },
 
-    setOrders() {
-        this.setState({flag: 'order'})
-    },
-
-    setBasket: function () {
-        this.setState({flag: 'basket'})
-    },
-
     render() {
 
         const userButtons =
@@ -36,7 +28,7 @@ const UserPage = createReactClass({
                         <button type='submit' className='userButton'>Мои покупки</button>
                     </Link>
                     <Link to={'/user/basket'}>
-                        <button type='submit' className='userButton' onClick={this.setBasket}>Корзина</button>
+                        <button type='submit' className='userButton'>Корзина</button>
                     </Link>
                 </div>
                 <button type='submit' className='userButton' onClick={this.logout}>Выход</button>

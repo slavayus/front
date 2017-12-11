@@ -26,7 +26,7 @@ class Navigation extends Component {
                     <Route path='/signup' component={SignUpPage}/>
                     <Route path='/user/:section' component={UserPage}/>
                     <Route path='/yee' component={YeePage}/>
-                    <Route path='/admin' component={AdminPage}/>
+                    <Route path='/admin/:section' component={AdminPage}/>
                     <Route path='/snapshot/:id' component={Snapshot}/>
                 </Switch>
             </div>

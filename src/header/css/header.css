@@ -87,12 +87,13 @@ INPUT[type="text"] {
     outline: none;
     color: #dadada;
     background: none;
-
+    font-weight: 300;
 }
 
 INPUT[type="text"]::placeholder {
     color: #dadada;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
 }
 
 .searchButton {

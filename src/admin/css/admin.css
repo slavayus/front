@@ -87,6 +87,19 @@
     padding: 0;
 }
 
+.productAdmin {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-right: 5%;
+}
+
+.productElement {
+    margin-bottom: 15px;
+    border-bottom: 1px outset #dadada;
+}
+
+
 @media only screen and (max-width: 1150px) {
     .notSentOrders {
         flex-direction: column;
@@ -94,7 +107,7 @@
         font-size: 12px;
     }
 
-    #tableTitle{
+    #tableTitle {
         display: none;
     }
 

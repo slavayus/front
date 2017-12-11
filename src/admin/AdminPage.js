@@ -3,6 +3,7 @@ import "./css/admin.css"
 import Link from "react-router-dom/es/Link";
 import cookie from "react-cookies";
 import Orders from "./Orders";
+import Products from "./Products";
 
 const createReactClass = require('create-react-class');
 
@@ -31,11 +32,23 @@ const AdminPage = createReactClass({
                 <button type='submit' className='adminButton' onClick={this.logout}>Выход</button>
             </div>;
 
+        let section;
+        switch (this.props.match.params.section) {
+            case 'orders':
+                section = <Orders/>;
+                break;
+            case 'products':
+                section = <Products/>;
+                break;
+            default :
+            // section = <Hot/>
+        }
+
+
         return (
             <div id={"adminPage"}>
                 {adminButtons}
-
-                {this.props.match.params.section === 'orders' ? <Orders/> : "YEE"}
+                {section}
             </div>
         );
     }

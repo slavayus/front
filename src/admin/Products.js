@@ -15,7 +15,8 @@ const Products = createReactClass({
             updatePrice: {message: ''},
             updateName: {message: ''},
             updateDescription: {message: ''},
-            addProduct: {message: ''}
+            addProduct: {message: ''},
+            deleteType: {message: ''}
         };
     },
 
@@ -25,7 +26,7 @@ const Products = createReactClass({
         if (idProduct.value !== '') {
             axios.delete(`${apiPrefix}:${serverPort}/admin/product/delete?productId=${idProduct.value}`, {withCredentials: true})
                 .then(function (response) {
-                        currentThis.setState({delete: {message: response.data}});
+                    currentThis.setState({delete: {message: response.data}});
                 })
                 .catch(function (error) {
                     currentThis.setState({delete: {message: error}});
@@ -45,7 +46,7 @@ const Products = createReactClass({
                 productId: updateProductPriceId.value,
                 newPrice: updateProductPrice.value
             }, {withCredentials: true}).then(function (response) {
-                    currentThis.setState({updatePrice: {message: response.data}});
+                currentThis.setState({updatePrice: {message: response.data}});
             }).catch(function (error) {
                 currentThis.setState({updatePrice: {message: error}});
             });
@@ -65,7 +66,7 @@ const Products = createReactClass({
                 productId: updateProductNameId.value,
                 newName: updateProductName.value
             }, {withCredentials: true}).then(function (response) {
-                    currentThis.setState({updateName: {message: response.data}});
+                currentThis.setState({updateName: {message: response.data}});
             }).catch(function (error) {
                 currentThis.setState({updateName: {message: error}});
             });
@@ -85,7 +86,7 @@ const Products = createReactClass({
                 productId: updateProductDescriptionId.value,
                 newDescription: updateProductDescription.value
             }, {withCredentials: true}).then(function (response) {
-                    currentThis.setState({updateDescription: {message: response.data}});
+                currentThis.setState({updateDescription: {message: response.data}});
             }).catch(function (error) {
                 console.log(error);
                 currentThis.setState({updateDescription: {message: error}});
@@ -111,7 +112,7 @@ const Products = createReactClass({
                 type: productAddType.value,
                 price: productAddPrice.value
             }, {withCredentials: true}).then(function (response) {
-                    currentThis.setState({addProduct: {message: response.data}});
+                currentThis.setState({addProduct: {message: response.data}});
             }).catch(function (error) {
                 console.log(error);
                 currentThis.setState({addProduct: {message: error}});
@@ -125,6 +126,23 @@ const Products = createReactClass({
         productAddType.value = '';
     },
 
+    deleteProductType: function () {
+        currentThis = this;
+        let idProduct = document.getElementById('deleteInputType');
+        if (idProduct.value !== '') {
+            axios.delete(`${apiPrefix}:${serverPort}/admin/product/type/delete?type=${idProduct.value}`, {withCredentials: true})
+                .then(function (response) {
+                    currentThis.setState({deleteType: {message: response.data}});
+                })
+                .catch(function (error) {
+                    currentThis.setState({delete: {message: error}});
+                });
+        } else {
+            currentThis.setState({deleteType: {message: 'Заполните все поля.'}});
+        }
+        idProduct.value = '';
+    },
+
     render() {
 
         let deleteProduct = <div className={"productElement"}>
@@ -133,6 +151,15 @@ const Products = createReactClass({
             <div>{this.state.delete.message}</div>
             <button type='submit' className='sendButton'
                     onClick={() => this.deleteProduct()}>Удалить
+            </button>
+        </div>;
+
+        let deleteProductType = <div className={"productElement"}>
+            <div>Удалить раздел</div>
+            <input id={"deleteInputType"} className='inputText' type="text" placeholder="type"/>
+            <div>{this.state.deleteType.message}</div>
+            <button type='submit' className='sendButton'
+                    onClick={() => this.deleteProductType()}>Удалить
             </button>
         </div>;
 
@@ -235,6 +262,7 @@ const Products = createReactClass({
                 {updateProductName}
                 {updateProductDescription}
                 {deleteProduct}
+                {deleteProductType}
             </div>
         );
     }

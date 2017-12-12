@@ -11,8 +11,30 @@ let currentThis;
 const Hot = createReactClass({
     getInitialState() {
         return {
+            delete: {message: ''},
             addHot: {message: ''}
         };
+    },
+
+    deleteProduct: function () {
+        currentThis = this;
+        let idProduct = document.getElementById('deleteInput');
+        if (idProduct.value !== '') {
+            axios.delete(`${apiPrefix}:${serverPort}/admin/product/deleteHot?productId=${idProduct.value}`, {withCredentials: true})
+                .then(function (response) {
+                    if (response.data === 'Permission denied') {
+                        currentThis.props.history.push('/uups');
+                    } else {
+                        currentThis.setState({delete: {message: response.data}});
+                    }
+                })
+                .catch(function (error) {
+                    currentThis.setState({delete: {message: error}});
+                });
+        } else {
+            currentThis.setState({delete: {message: 'Заполните все поля.'}});
+        }
+        idProduct.value = '';
     },
 
     addHot: function () {
@@ -91,8 +113,19 @@ const Hot = createReactClass({
             </button>
         </div>;
 
+        let deleteHot = <div className={"productElement"}>
+            <div>Завершить акцию</div>
+            <input id={"deleteInput"} className='inputText' type="text" placeholder="id продукта"/>
+            <div>{this.state.delete.message}</div>
+            <button type='submit' className='sendButton'
+                    onClick={() => this.deleteProduct()}>Завершить
+            </button>
+        </div>;
+
+
         return (
             <div className={"productAdmin"}>
+                {deleteHot}
                 {addHot}
             </div>
         );

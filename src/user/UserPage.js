@@ -4,6 +4,8 @@ import "./css/user.css"
 import Orders from './Orders'
 import Basket from "./Basket";
 import Link from "react-router-dom/es/Link";
+import {apiPrefix, serverPort} from "../etc/config";
+import axios from "axios/index";
 
 const createReactClass = require('create-react-class');
 
@@ -14,12 +16,22 @@ const UserPage = createReactClass({
         this.props.history.push('/');
     },
 
-    getInitialState: function () {
-        return {flag: 'order'};
+    getInitialState() {
+        return {admin: false}
+    },
+
+    componentDidMount() {
+        let currentThis = this;
+        axios.get(`${apiPrefix}:${serverPort}/admin/isAdmin`, {withCredentials: true}).then(function (response) {
+            if (response.data !== 'Permission denied') {
+                currentThis.setState({admin: true});
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     },
 
     render() {
-
         const userButtons =
             <div id={'userButtonBlock'}>
                 <div id={'userButtonServer'}>
@@ -31,6 +43,9 @@ const UserPage = createReactClass({
                     </Link>
                 </div>
                 <button type='submit' className='userButton' onClick={this.logout}>Выход</button>
+                {this.state.admin === true ? <Link to={'/admin/orders'}>
+                    <button type='submit' className='userButton'>Admin</button>
+                </Link> : <div> </div>}
             </div>;
 
         return (

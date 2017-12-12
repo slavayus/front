@@ -25,11 +25,7 @@ const Products = createReactClass({
         if (idProduct.value !== '') {
             axios.delete(`${apiPrefix}:${serverPort}/admin/product/delete?productId=${idProduct.value}`, {withCredentials: true})
                 .then(function (response) {
-                    if (response.data === 'Permission denied') {
-                        currentThis.props.history.push('/uups');
-                    } else {
                         currentThis.setState({delete: {message: response.data}});
-                    }
                 })
                 .catch(function (error) {
                     currentThis.setState({delete: {message: error}});
@@ -49,11 +45,7 @@ const Products = createReactClass({
                 productId: updateProductPriceId.value,
                 newPrice: updateProductPrice.value
             }, {withCredentials: true}).then(function (response) {
-                if (response.data === 'Permission denied') {
-                    currentThis.props.history.push('/uups');
-                } else {
                     currentThis.setState({updatePrice: {message: response.data}});
-                }
             }).catch(function (error) {
                 currentThis.setState({updatePrice: {message: error}});
             });
@@ -73,11 +65,7 @@ const Products = createReactClass({
                 productId: updateProductNameId.value,
                 newName: updateProductName.value
             }, {withCredentials: true}).then(function (response) {
-                if (response.data === 'Permission denied') {
-                    currentThis.props.history.push('/uups');
-                } else {
                     currentThis.setState({updateName: {message: response.data}});
-                }
             }).catch(function (error) {
                 currentThis.setState({updateName: {message: error}});
             });
@@ -97,11 +85,7 @@ const Products = createReactClass({
                 productId: updateProductDescriptionId.value,
                 newDescription: updateProductDescription.value
             }, {withCredentials: true}).then(function (response) {
-                if (response.data === 'Permission denied') {
-                    currentThis.props.history.push('/uups');
-                } else {
                     currentThis.setState({updateDescription: {message: response.data}});
-                }
             }).catch(function (error) {
                 console.log(error);
                 currentThis.setState({updateDescription: {message: error}});
@@ -127,11 +111,7 @@ const Products = createReactClass({
                 type: productAddType.value,
                 price: productAddPrice.value
             }, {withCredentials: true}).then(function (response) {
-                if (response.data === 'Permission denied') {
-                    currentThis.props.history.push('/uups');
-                } else {
                     currentThis.setState({addProduct: {message: response.data}});
-                }
             }).catch(function (error) {
                 console.log(error);
                 currentThis.setState({addProduct: {message: error}});

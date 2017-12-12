@@ -22,11 +22,7 @@ const Hot = createReactClass({
         if (idProduct.value !== '') {
             axios.delete(`${apiPrefix}:${serverPort}/admin/product/deleteHot?productId=${idProduct.value}`, {withCredentials: true})
                 .then(function (response) {
-                    if (response.data === 'Permission denied') {
-                        currentThis.props.history.push('/uups');
-                    } else {
-                        currentThis.setState({delete: {message: response.data}});
-                    }
+                    currentThis.setState({delete: {message: response.data}});
                 })
                 .catch(function (error) {
                     currentThis.setState({delete: {message: error}});
@@ -46,11 +42,7 @@ const Hot = createReactClass({
                 productId: hotIdProduct.value,
                 hotPrice: hotPrice.value
             }, {withCredentials: true}).then(function (response) {
-                if (response.data === 'Permission denied') {
-                    currentThis.props.history.push('/uups');
-                } else {
-                    currentThis.setState({addHot: {message: response.data}});
-                }
+                currentThis.setState({addHot: {message: response.data}});
             }).catch(function (error) {
                 console.log(error);
                 currentThis.setState({addHot: {message: error}});

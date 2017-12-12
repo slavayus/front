@@ -125,8 +125,8 @@ const Hot = createReactClass({
 
         return (
             <div className={"productAdmin"}>
-                {deleteHot}
                 {addHot}
+                {deleteHot}
             </div>
         );
     }

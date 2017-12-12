@@ -2,6 +2,7 @@ import React from 'react';
 import {apiPrefix, serverPort} from "../etc/config.json"
 import '../product/css/product.css'
 import axios from "axios/index";
+import XHRUploader from 'react-xhr-uploader'
 
 const createReactClass = require('create-react-class');
 
@@ -13,7 +14,8 @@ const Products = createReactClass({
             delete: {message: ''},
             updatePrice: {message: ''},
             updateName: {message: ''},
-            updateDescription: {message: ''}
+            updateDescription: {message: ''},
+            addProduct: {message: ''}
         };
     },
 
@@ -111,6 +113,38 @@ const Products = createReactClass({
         updateProductDescription.value = '';
     },
 
+
+    addProduct: function () {
+        currentThis = this;
+        let productAddName = document.getElementById('productAddName');
+        let productAddDescription = document.getElementById('productAddDescription');
+        let productAddPrice = document.getElementById('productAddPrice');
+        let productAddType = document.getElementById('productAddType');
+        if (productAddName.value !== '' && productAddDescription.value !== '' && productAddType.value !== '' && productAddPrice.value !== '') {
+            axios.post(`${apiPrefix}:${serverPort}/admin/product/new`, {
+                name: productAddName.value,
+                description: productAddDescription.value,
+                type: productAddType.value,
+                price: productAddPrice.value
+            }, {withCredentials: true}).then(function (response) {
+                if (response.data === 'Permission denied') {
+                    currentThis.props.history.push('/uups');
+                } else {
+                    currentThis.setState({addProduct: {message: response.data}});
+                }
+            }).catch(function (error) {
+                console.log(error);
+                currentThis.setState({addProduct: {message: error}});
+            });
+        } else {
+            currentThis.setState({addProduct: {message: 'Заполните все поля.'}});
+        }
+        productAddName.value = '';
+        productAddDescription.value = '';
+        productAddPrice.value = '';
+        productAddType.value = '';
+    },
+
     render() {
 
         let deleteProduct = <div className={"productElement"}>
@@ -153,12 +187,74 @@ const Products = createReactClass({
             </button>
         </div>;
 
+        const myStyles = {
+            root: {
+                border: 'none',
+                padding: 0,
+                height: 20
+
+            },
+            placeHolderStyle: {
+                textAlign: 'left'
+            },
+            dropTargetStyle: {
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+            },
+            progress: {
+                height: 0
+            },
+            fileName: {
+                display: 'none'
+            },
+            fileSize: {
+                display: 'none'
+            },
+            removeButton: {
+                display: 'none'
+            }
+        };
+
+        let addProduct = <div className={"productElement"}>
+            <div>Добавить акцию</div>
+            <input id={"productAddName"} className='inputText' type="text" placeholder="Название продукта"/>
+            <input id={"productAddDescription"} className='inputText' type="text" placeholder="Описание продукта"/>
+            <input id={"productAddPrice"} className='inputText' type="text" placeholder="Цена продукта"/>
+            <input id={"productAddType"} className='inputText' type="text" placeholder="Тип продукта"/>
+
+            <XHRUploader
+                url={`${apiPrefix}:${serverPort}/admin/product/image/min`}
+                auto
+                maxFiles={1}
+                styles={myStyles}
+                dropzoneLabel={'Маленькая версия фотографии'}
+                uploadIconClass={'none'}
+            />
+
+            <XHRUploader
+                url={`${apiPrefix}:${serverPort}/admin/product/image/max`}
+                auto
+                maxFiles={1}
+                styles={myStyles}
+                dropzoneLabel={'Большая версия фотографии'}
+                uploadIconClass={'none'}
+            />
+
+            <div>{this.state.addProduct.message}</div>
+            <button type='submit' className='sendButton'
+                    onClick={() => this.addProduct()}>Добавить
+            </button>
+        </div>;
+
+
         return (
             <div className={"productAdmin"}>
-                {deleteProduct}
+                {addProduct}
                 {updateProductPrice}
                 {updateProductName}
                 {updateProductDescription}
+                {deleteProduct}
             </div>
         );
     }

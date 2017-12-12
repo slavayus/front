@@ -14,14 +14,15 @@ const AdminPage = createReactClass({
         cookie.remove('user');
         this.props.history.push('/');
     },
-
-    render() {
+    componentDidMount() {
         if (!cookie.load('user')) {
             this.props.history.push('/uups');
         }
+    },
 
+    render() {
         let currentThis = this;
-        axios.get(`${apiPrefix}:${serverPort}/admin`, {withCredentials: true}).then(function (response) {
+        axios.get(`${apiPrefix}:${serverPort}/admin/isAdmin`, {withCredentials: true}).then(function (response) {
             if (response.data === 'Permission denied') {
                 currentThis.props.history.push('/uups');
             }

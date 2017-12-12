@@ -11,6 +11,7 @@ import YeePage from "./YeePage";
 import AdminPage from "../admin/AdminPage";
 import UserPage from "../user/UserPage";
 import Snapshot from "../product_snapshot/Snapshot";
+import NotFound from "../pageNotFound/NotFound";
 
 class Navigation extends Component {
     render() {
@@ -28,6 +29,7 @@ class Navigation extends Component {
                     <Route path='/yee' component={YeePage}/>
                     <Route path='/admin/:section' component={AdminPage}/>
                     <Route path='/snapshot/:id' component={Snapshot}/>
+                    <Route path='*' component={NotFound}/>
                 </Switch>
             </div>
         )

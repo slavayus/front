@@ -1,12 +1,9 @@
 import React from 'react';
 import "../one/css/one.css";
-import {apiPrefix, serverPort} from "../etc/config.json"
 import SnapshotStore from "./SnapshotStore";
 
 
 const createReactClass = require('create-react-class');
-
-const messageConfirm = 'Вы действительно желаете приобрести этот товар?';
 
 const Snapshot = createReactClass({
     getInitialState() {

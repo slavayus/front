@@ -6,7 +6,7 @@ import Link from "react-router-dom/es/Link";
 import PropTypes from 'prop-types';
 import FacebookLogin from "react-facebook-login";
 import axios from 'axios'
-import {apiPrefix, serverPort, stomp} from "../../etc/config.json"
+import {apiPrefix, serverPort} from "../../etc/config.json"
 import * as cookie from "react-cookies";
 
 let currentThis;
@@ -26,7 +26,6 @@ class LoginForm extends React.Component {
         }, {withCredentials: true})
             .then(function (response) {
                 cookie.save('user', response.data.data);
-                console.log(currentThis.props);
                 currentThis.props.history.goBack();
             }).catch(function (error) {
             console.log(error);
@@ -75,15 +74,14 @@ class LoginForm extends React.Component {
                             <p id={"message-register"}>Еще нет аккаунта? <Link to={'/signup'}>Зарегистрироваться</Link>.
                             </p>
 
-
                             <FacebookLogin
                                 appId="2141240026103660"
                                 autoLoad={false}
                                 fields="name,email,picture"
                                 callback={this.responseFacebook}
                                 cssClass="social">
-                                <div class="social">
-                                    <i class="fa fa-facebook" aria-hidden="true"
+                                <div className="social">
+                                    <i className="fa fa-facebook" aria-hidden="true"
                                        onClick={this.responseFacebook}/>
                                 </div>
                             </FacebookLogin>

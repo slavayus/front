@@ -4,17 +4,30 @@ import Link from "react-router-dom/es/Link";
 import cookie from "react-cookies";
 import Orders from "./Orders";
 import Products from "./Products";
+import Hot from "./Hot";
+import axios from "axios/index";
+import {apiPrefix, serverPort} from "../etc/config";
 
 const createReactClass = require('create-react-class');
-
 const AdminPage = createReactClass({
     logout: function () {
         cookie.remove('user');
         this.props.history.push('/');
     },
 
-
     render() {
+        if (!cookie.load('user')) {
+            this.props.history.push('/uups');
+        }
+
+        let currentThis = this;
+        axios.get(`${apiPrefix}:${serverPort}/admin`, {withCredentials: true}).then(function (response) {
+            if (response.data === 'Permission denied') {
+                currentThis.props.history.push('/uups');
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
 
         const adminButtons =
             <div id={'adminButtonBlock'}>
@@ -35,13 +48,13 @@ const AdminPage = createReactClass({
         let section;
         switch (this.props.match.params.section) {
             case 'orders':
-                section = <Orders/>;
+                section = <Orders history={this.props.history}/>;
                 break;
             case 'products':
-                section = <Products/>;
+                section = <Products history={this.props.history}/>;
                 break;
             default :
-            // section = <Hot/>
+                section = <Hot history={this.props.history}/>
         }
 
 

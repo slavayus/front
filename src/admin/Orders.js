@@ -1,6 +1,5 @@
 import React from 'react';
 import {apiPrefix, serverPort} from "../etc/config.json"
-import cookie from 'react-cookies'
 import OrderStore from "./store/OrderStore";
 import '../product/css/product.css'
 import axios from 'axios'
@@ -26,9 +25,6 @@ const Orders = createReactClass({
 
     componentDidMount() {
         OrderStore.addChangeListener(this.onChange);
-        if (!cookie.load('user')) {
-            this.props.history.push('/login');
-        }
     },
 
     sent: function (data, id) {
@@ -45,7 +41,7 @@ const Orders = createReactClass({
     render() {
         return (
             this.state.products.status ?
-                <div className='adminMain'>
+                <div className='productAdmin'>
                     <div className={"notSentOrders"} id={"tableTitle"}>
                         <div className={"notSentOrdersItem"}>Имя</div>
                         <div className={"notSentOrdersItem"}>Почта</div>
@@ -65,9 +61,9 @@ const Orders = createReactClass({
                         </div>
                     ))}
                 </div>
-                : <div className="adminMain">
+                : <div className="productAdmin">
                     <div id='emptyUser'>
-                        <span>{this.state.products.data}</span>
+                        <span>{this.state.products.data === 'Permission denied' ? this.props.history.push('/uups') : this.state.products.data}</span>
                     </div>
                 </div>
         );

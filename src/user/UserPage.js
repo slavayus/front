@@ -1,5 +1,4 @@
 import React from 'react';
-import {apiPrefix, serverPort} from "../etc/config.json"
 import cookie from 'react-cookies'
 import "./css/user.css"
 import Orders from './Orders'

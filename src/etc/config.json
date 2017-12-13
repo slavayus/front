@@ -1,18 +1,11 @@
 {
-  "apiPrefix": "http://localhost",
+  "apiPrefix": "http://192.168.1.34",
   "serverPort": "3030",
-  "webSocket": "ws://127.0.0.1:15674/ws",
-  "database": {
-    "login": "root",
-    "password": "root",
-    "name": "store",
-    "host": "localhost",
-    "port": "3306"
-  },
+  "webSocket": "ws://192.168.1.34:15674/ws",
   "stomp": {
-    "mq_username": "guest",
-    "mq_password": "guest",
+    "mq_username": "test",
+    "mq_password": "test",
     "mq_vhost": "/",
-    "mq_url": "http://localhost:15674/stomp"
+    "mq_url": "http://192.168.1.34:15674/stomp"
   }
 }

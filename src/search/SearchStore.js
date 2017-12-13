@@ -1,7 +1,7 @@
 import {createStore} from 'redux'
 
 import axios from 'axios'
-import {apiPrefix, serverPort, stomp} from "../etc/config.json"
+import {apiPrefix, serverPort, stomp, webSocket} from "../etc/config.json"
 
 const Stomp = require('stompjs');
 
@@ -11,7 +11,7 @@ let unsubscribe;
 
 const SearchStore = {
     setUpConnection() {
-        const ws = new WebSocket('ws://127.0.0.1:15674/ws');
+        const ws = new WebSocket(webSocket);
         const client = Stomp.over(ws);
 
         const listenTypeQueue = "/queue/products_" + uniqueUserId;

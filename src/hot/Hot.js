@@ -39,6 +39,7 @@ const Hot = createReactClass({
         } else {
             return (
                 <div id='empty'>
+                    {console.log(this.state.products.data)}
                     <span>{this.state.products.data}</span>
                 </div>
             )

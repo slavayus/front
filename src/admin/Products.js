@@ -224,7 +224,7 @@ const Products = createReactClass({
         };
 
         let addProduct = <div className={"productElement"}>
-            <div>Добавить акцию</div>
+            <div>Добавить продукт</div>
             <input id={"productAddName"} className='inputText' type="text" placeholder="Название продукта"/>
             <input id={"productAddDescription"} className='inputText' type="text" placeholder="Описание продукта"/>
             <input id={"productAddPrice"} className='inputText' type="text" placeholder="Цена продукта"/>

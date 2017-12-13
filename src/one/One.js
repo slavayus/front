@@ -82,6 +82,13 @@ const One = createReactClass({
     },
 
     render() {
+        let addToBasket = <button type="submit" id="byButton" onClick={this.addToBasket}>Добавить в
+            корзину</button>;
+        if ((cookie.load('basket') !== undefined) && (Array.from(cookie.load('basket')).includes(this.state.products.data.id))) {
+            addToBasket = <button type="submit" id="byButton" onClick={this.deleteFromBasket}>Удалить из
+                корзины</button>;
+        }
+
         if (this.state.products.status) {
             return (
                 <div className={"one"}>
@@ -89,15 +96,7 @@ const One = createReactClass({
                         <div id={"description"}>{this.state.products.data.description}</div>
                         <div className={'buyAndBasket'}>
                             <button type="submit" id="byButton" onClick={this.wantToBuy}>Купить</button>
-
-                            {!Array.from(cookie.load('basket')).includes(this.state.products.data.id) ?
-                                <button type="submit" id="byButton" onClick={this.addToBasket}>Добавить в
-                                    корзину</button>
-                                : <span> </span>}
-
-                            {Array.from(cookie.load('basket')).includes(this.state.products.data.id) ?
-                                <button type="submit" id="byButton" onClick={this.deleteFromBasket}>Удалить из
-                                    корзины</button> : <div></div>}
+                            {addToBasket}
                         </div>
                     </div>
                     <img className={"oneImg"} src={require(`./img/${this.state.products.data.image_large_version}`)}

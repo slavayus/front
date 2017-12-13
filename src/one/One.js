@@ -30,7 +30,7 @@ const One = createReactClass({
     },
 
     buyThisProduct: function () {
-        axios.post(`${apiPrefix}:${serverPort}/order?`, {
+        axios.post(`${apiPrefix}:${serverPort}/order`, {
             productId: this.state.products.data.id
         }, {withCredentials: true}).then(function (response) {
             alert(response.data);

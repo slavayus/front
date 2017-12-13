@@ -3,7 +3,8 @@ import cookie from 'react-cookies'
 import "./css/user.css"
 import BasketStore from "./store/BasketStore";
 import Element from "../product/Element";
-import '../product/css/product.css'
+import axios from "axios/index";
+import {apiPrefix, serverPort} from "../etc/config";
 
 
 const createReactClass = require('create-react-class');
@@ -32,10 +33,31 @@ const Basket = createReactClass({
         }
     },
 
+    byAllProducts: function () {
+        axios.post(`${apiPrefix}:${serverPort}/order/basket?`, {
+            productsId: Array.from(cookie.load('basket'))
+        }, {withCredentials: true}).then(function (response) {
+            alert(response.data);
+        }).catch(function (error) {
+            alert(error);
+        });
+    },
+
+    calculateTotalPrice: function () {
+        let totalPrice = 0;
+        BasketStore.getStore().getState().data.forEach(value => totalPrice += value.price);
+        return totalPrice;
+    },
+
     render() {
         return (
             this.state.products.status ?
                 <div className='userMain'>
+                    <div id={"byAllProducts"}>
+                        <span onClick={() => this.byAllProducts()}>Купить все продукты</span>
+                        <label> </label>
+                        <span>Общая цена: {this.calculateTotalPrice()}</span>
+                    </div>
                     {this.state.products.data.map((item, index) => (
                         <Element key={index} item={item}/>
                     ))}

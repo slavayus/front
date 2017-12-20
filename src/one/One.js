@@ -33,18 +33,16 @@ const One = createReactClass({
         axios.post(`${apiPrefix}:${serverPort}/order`, {
             productId: this.state.products.data.id
         }, {withCredentials: true}).then(function (response) {
-            alert(response.data);
+            console.log(response.data);
         }).catch(function (error) {
-            alert(error);
+            console.log(error);
         });
     },
 
     wantToBuy: function () {
         if (cookie.load('user')) {
-            let result = window.confirm(messageConfirm);
-            if (result) {
-                this.buyThisProduct();
-            }
+            this.buyThisProduct();
+            this.props.history.push('/checkorder');
         } else {
             this.props.history.push('/login');
         }

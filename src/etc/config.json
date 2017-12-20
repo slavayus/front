@@ -2,6 +2,7 @@
   "apiPrefix": "http://192.168.1.34",
   "serverPort": "3030",
   "webSocket": "ws://192.168.1.34:15674/ws",
+  "facebookId":"519865905049371",
   "stomp": {
     "mq_username": "test",
     "mq_password": "test",

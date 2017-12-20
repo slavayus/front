@@ -6,7 +6,7 @@ import Link from "react-router-dom/es/Link";
 import PropTypes from 'prop-types';
 import FacebookLogin from "react-facebook-login";
 import axios from 'axios'
-import {apiPrefix, serverPort} from "../../etc/config.json"
+import {apiPrefix, facebookId, serverPort} from "../../etc/config.json"
 import * as cookie from "react-cookies";
 
 let currentThis;
@@ -75,7 +75,7 @@ class LoginForm extends React.Component {
                             </p>
 
                             <FacebookLogin
-                                appId="2141240026103660"
+                                appId={facebookId}
                                 autoLoad={false}
                                 fields="name,email,picture"
                                 callback={this.responseFacebook}

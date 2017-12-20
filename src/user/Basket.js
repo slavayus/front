@@ -5,6 +5,7 @@ import BasketStore from "./store/BasketStore";
 import Element from "../product/Element";
 import axios from "axios/index";
 import {apiPrefix, serverPort} from "../etc/config";
+import Link from "react-router-dom/es/Link";
 
 
 const createReactClass = require('create-react-class');
@@ -37,9 +38,9 @@ const Basket = createReactClass({
         axios.post(`${apiPrefix}:${serverPort}/order/basket?`, {
             productsId: Array.from(cookie.load('basket'))
         }, {withCredentials: true}).then(function (response) {
-            alert(response.data);
+            console.log(response);
         }).catch(function (error) {
-            alert(error);
+            console.log(error);
         });
     },
 
@@ -54,7 +55,9 @@ const Basket = createReactClass({
             this.state.products.status ?
                 <div className='userMain'>
                     <div id={"byAllProducts"}>
-                        <span onClick={() => this.byAllProducts()}>Купить все продукты</span>
+                        <Link to={'/checkorder'}>
+                            <span onClick={() => this.byAllProducts()}>Купить все продукты</span>
+                        </Link>
                         <label> </label>
                         <span>Общая цена: {this.calculateTotalPrice()}</span>
                     </div>

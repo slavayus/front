@@ -1,0 +1,7 @@
+#orderedSendButton {
+    width: 250px;
+}
+
+#orderedSendButton:hover {
+    color: #ffffff;
+}

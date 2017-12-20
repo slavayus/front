@@ -7,11 +7,12 @@ import Hot from "../hot/Hot";
 import CategoriesMobile from "../categories/script/CategoriesMobile";
 import LoginPage from "../auth/login/LoginPage";
 import SignUpPage from "../auth/signup/SignUpPage";
-import YeePage from "./YeePage";
 import AdminPage from "../admin/AdminPage";
 import UserPage from "../user/UserPage";
 import Snapshot from "../product_snapshot/Snapshot";
 import NotFound from "../pageNotFound/NotFound";
+import CheckOrder from "../CheckOrder/CheckOrder";
+import Ordered from "../Ordered/Ordered";
 
 class Navigation extends Component {
     render() {
@@ -25,10 +26,11 @@ class Navigation extends Component {
                     <Route path='/search' component={Search}/>
                     <Route path='/login/' component={LoginPage}/>
                     <Route path='/signup' component={SignUpPage}/>
-                    <Route path='/user/:section' component={UserPage}/>
-                    <Route path='/yee' component={YeePage}/>
+                    <Route path='/user/:section' component={UserPage} />
                     <Route path='/admin/:section' component={AdminPage}/>
                     <Route path='/snapshot/:id' component={Snapshot}/>
+                    <Route path='/checkorder' component={CheckOrder}/>
+                    <Route path='/ordered' component={Ordered}/>
                     <Route path='*' component={NotFound}/>
                 </Switch>
             </div>

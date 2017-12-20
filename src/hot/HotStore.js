@@ -9,9 +9,25 @@ const uniqueUserId = Date.now();
 
 let unsubscribe;
 
+let size = 1;
+
+let end = false;
+
 const HotStore = {
     getStore() {
         return store;
+    },
+
+    getSize() {
+        return size;
+    },
+
+    setSize(newSize) {
+        size = newSize;
+    },
+
+    getEnd(){
+        return end
     },
 
     setUpConnection() {
@@ -35,15 +51,18 @@ const HotStore = {
 
             switch (dataFromClient.status) {
                 case 'success': {
+                    end = dataFromClient.end;
                     store.dispatch({type: 'LOAD', data: dataFromClient.data});
                     break;
                 }
                 case 'empty': {
+                    end = true;
                     store.dispatch({type: 'CLEAR', data: "Нет таких товаров:(\n Возварщайтесь в другой раз"});
                     break;
                 }
                 case 'error': {
-                    store.dispatch({type: 'CLEAR', data :dataFromClient.data});
+                    end = true;
+                    store.dispatch({type: 'CLEAR', data: dataFromClient.data});
                     break;
                 }
                 default: {
@@ -61,7 +80,7 @@ const HotStore = {
     },
 
     loadProducts() {
-        axios.get(`${apiPrefix}:${serverPort}/?queueId=${uniqueUserId}`)
+        axios.get(`${apiPrefix}:${serverPort}/?queueId=${uniqueUserId}&size=${size}`)
             .then(function (response) {
                 store.dispatch({type: 'CLEAR', data: response.data});
             })

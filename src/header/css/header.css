@@ -116,6 +116,19 @@ INPUT[type="text"]::placeholder {
     display: none;
 }
 
+
+.footerEmpty{
+    position: fixed!important;
+    bottom: 0!important;
+    justify-content: flex-end!important;
+}
+
+.footerFill{
+    position: relative!important;
+    bottom: 0!important;
+    justify-content: flex-end!important;
+}
+
 @media only screen and (max-width: 1013px) {
     .action {
         width: 100px;

@@ -11,8 +11,8 @@ import AdminPage from "../admin/AdminPage";
 import UserPage from "../user/UserPage";
 import Snapshot from "../product_snapshot/Snapshot";
 import NotFound from "../pageNotFound/NotFound";
-import CheckOrder from "../CheckOrder/CheckOrder";
-import Ordered from "../Ordered/Ordered";
+import CheckOrder from "../checkOrder/CheckOrder";
+import Ordered from "../ordered/Ordered";
 
 class Navigation extends Component {
     render() {

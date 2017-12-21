@@ -30,7 +30,8 @@ const One = createReactClass({
 
     buyThisProduct: function () {
         axios.post(`${apiPrefix}:${serverPort}/order`, {
-            productId: this.state.products.data.id
+            productId: this.state.products.data.id,
+            productPrice: this.state.products.data.price,
         }, {withCredentials: true}).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -44,7 +45,7 @@ const One = createReactClass({
                 this.buyThisProduct();
                 this.props.history.push('/checkorder');
             } else {
-                OneStore.getStore().dispatch({
+                return OneStore.getStore().dispatch({
                     type: 'UPDATE_OPEN',
                     data: {
                         data: OneStore.getStore().getState().data,

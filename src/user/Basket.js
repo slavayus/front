@@ -34,10 +34,11 @@ const Basket = createReactClass({
     },
 
     byAllProducts: function () {
-        if (BasketStore.getStore().getState().count.count > this.calculateTotalPrice()) {
-            return this.props.history.push('/checkorder');
+        const basketPrice = this.calculateTotalPrice();
+        if (BasketStore.getStore().getState().count.count > basketPrice) {
+            this.props.history.push('/checkorder');
         } else {
-            BasketStore.getStore().dispatch({
+            return BasketStore.getStore().dispatch({
                 type: 'UPDATE_OPEN',
                 data: {
                     data: BasketStore.getStore().getState().data,
@@ -47,8 +48,9 @@ const Basket = createReactClass({
             });
         }
 
-        axios.post(`${apiPrefix}:${serverPort}/order/basket?`, {
-            productsId: Array.from(cookie.load('basket'))
+        axios.post(`${apiPrefix}:${serverPort}/order/basket`, {
+            productsId: Array.from(cookie.load('basket')),
+            productsPrice: basketPrice
         }, {withCredentials: true}).then(function (response) {
             console.log(response);
         }).catch(function (error) {

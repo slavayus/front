@@ -6,6 +6,7 @@ import Basket from "./Basket";
 import Link from "react-router-dom/es/Link";
 import {apiPrefix, serverPort} from "../etc/config";
 import axios from "axios/index";
+import Bank from "./Bank";
 
 const createReactClass = require('create-react-class');
 
@@ -40,19 +41,34 @@ const UserPage = createReactClass({
                     </Link>
                     <Link to={'/user/basket'}>
                         <button type='submit' className='userButton'>Корзина</button>
+                    </Link><br/>
+                    <Link to={'/user/bank'}>
+                        <button type='submit' className='userButton'>Счет</button>
                     </Link>
                 </div>
                 <button type='submit' className='userButton' onClick={this.logout}>Выход</button>
                 {this.state.admin === true ? <Link to={'/admin/orders'}>
                     <button type='submit' className='userButton'>Admin</button>
-                </Link> : <div> </div>}
+                </Link> : <div/>}
             </div>;
+
+        let section;
+        switch (this.props.match.params.section) {
+            case 'orders':
+                section = <Orders/>;
+                break;
+            case 'basket':
+                section = <Basket/>;
+                break;
+            default:
+                section = <Bank/>
+        }
 
         return (
             <div>
                 <div className={"oneUser"}>
                     {userButtons}
-                    {this.props.match.params.section === 'orders' ? <Orders/> : <Basket/>}
+                    {section}
                 </div>
             </div>
         )

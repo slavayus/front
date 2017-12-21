@@ -1,6 +1,5 @@
 import React from 'react';
 import "./ordered.css"
-import {apiPrefix, serverPort} from "../etc/config";
 
 const createReactClass = require('create-react-class');
 

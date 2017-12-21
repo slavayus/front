@@ -8,8 +8,6 @@ import {apiPrefix, serverPort} from "../etc/config.json"
 
 const createReactClass = require('create-react-class');
 
-const messageConfirm = 'Вы действительно желаете приобрести этот товар?';
-
 const One = createReactClass({
     getInitialState() {
         OneStore.setUpConnection();

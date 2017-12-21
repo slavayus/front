@@ -29,9 +29,9 @@ const CheckOrder = createReactClass({
         let orderCode = document.getElementById('orderCode');
         if (orderCode.value !== '') {
             axios.get(`${apiPrefix}:${serverPort}/checkorder?code=${orderCode.value}`, {withCredentials: true}).then(function (response) {
-                if(response.data==="codeIsOk"){
+                if (response.data === "codeIsOk") {
                     currentThis.props.history.push('/ordered');
-                }else {
+                } else {
                     currentThis.setState({codeStatus: response.data});
                 }
             }).catch(function (error) {
@@ -49,7 +49,7 @@ const CheckOrder = createReactClass({
             case "codeIsFalse":
                 code = "Что-то не так с вашим кодом.";
                 break;
-            case "codeIsOk":
+            default:
                 break;
         }
 

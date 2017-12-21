@@ -16,7 +16,7 @@
 
 #userButtonServer {
     border-bottom: 1px outset #dadada;
-    height: 85px;
+    height: 125px;
     line-height: 35px;
 }
 
@@ -62,6 +62,27 @@
     flex-wrap: wrap;
     align-content: space-around;
     cursor: pointer;
+}
+
+#bank{
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 5px;
+    /*background-color: #222222;*/
+}
+
+#bankFirstDiv{
+    border-bottom: 1px outset #dadada;
+    padding-bottom: 10px;
+}
+
+#bankSecondDiv{
+    border-bottom: 1px outset #dadada;
+    padding-bottom: 10px;
+    padding-top: 8px;
 }
 
 @media only screen and (max-width: 540px) {

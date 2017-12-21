@@ -28,16 +28,6 @@ const Bank = createReactClass({
         }
     },
 
-    byAllProducts: function () {
-        axios.post(`${apiPrefix}:${serverPort}/order/basket?`, {
-            productsId: Array.from(cookie.load('basket'))
-        }, {withCredentials: true}).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    },
-
     deposit: function () {
         currentThis = this;
         let cardNumber = document.getElementById('cardNumber');
@@ -109,7 +99,7 @@ const Bank = createReactClass({
                 currentThis.setState({addHot: {message: error}});
             });
         } else {
-            currentThis.setState({message: 'Не удалось завершить операцию.'});
+            currentThis.setState({message: 'Заполните все поля.'});
         }
     },
 

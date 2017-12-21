@@ -35,7 +35,10 @@ const OrderStore = {
 
             switch (dataFromClient.status) {
                 case 'success': {
-                    store.dispatch({type: 'LOAD', data: dataFromClient.data});
+                    store.dispatch({
+                        type: 'LOAD',
+                        data: {data: dataFromClient.data, count: dataFromClient.count}
+                    });
                     break;
                 }
                 case 'empty': {
@@ -88,19 +91,30 @@ const OrderStore = {
 
 function products(state = {
     status: false,
-    data: 'Вы пока ничего не выбрали:('
+    data: 'Вы пока ничего не выбрали:(',
+    count: 0,
+    open: false
 }, action) {
     switch (action.type) {
         case 'LOAD':
             return {
                 status: true,
-                data: action.data
+                data: action.data.data,
+                count: action.data.count
             };
         case 'CLEAR':
             return {
                 status: false,
                 data: action.data
             };
+        case 'UPDATE_OPEN': {
+            return {
+                status:true,
+                data:action.data.data,
+                count:action.data.count,
+                open: action.data.open
+            };
+        }
         default :
             return state;
     }

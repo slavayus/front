@@ -58,7 +58,7 @@ const UserPage = createReactClass({
                 section = <Orders/>;
                 break;
             case 'basket':
-                section = <Basket/>;
+                section = <Basket history={this.props.history}/>;
                 break;
             default:
                 section = <Bank/>

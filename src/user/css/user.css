@@ -85,6 +85,11 @@
     padding-top: 8px;
 }
 
+#modalButton{
+    width: 100%;
+    text-align: right;
+}
+
 @media only screen and (max-width: 540px) {
     .oneUser {
         flex-wrap: wrap;

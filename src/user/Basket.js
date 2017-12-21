@@ -105,7 +105,7 @@ const Basket = createReactClass({
                         style={customStyles}
                         contentLabel="Modal">
 
-                        <h1>Не хватает средств на счету</h1>
+                        <h1 id={"modalHeader"}>Не хватает средств на счету</h1>
                         <button type='submit' className='sendButton' id={'modalButton'}
                                 onClick={() => this.closeModal()}>Понял. Принял.
                         </button>

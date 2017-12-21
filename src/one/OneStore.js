@@ -35,7 +35,7 @@ const OneStore = {
 
             switch (dataFromClient.status) {
                 case 'success': {
-                    store.dispatch({type: 'LOAD', data: dataFromClient.data});
+                    store.dispatch({type: 'LOAD', data: {data:dataFromClient.data, count:dataFromClient.count}});
                     break;
                 }
                 case 'empty': {
@@ -43,7 +43,7 @@ const OneStore = {
                     break;
                 }
                 case 'error': {
-                    store.dispatch({type: 'CLEAR', data :dataFromClient.data});
+                    store.dispatch({type: 'CLEAR', data: dataFromClient.data});
                     break;
                 }
                 default: {
@@ -61,7 +61,7 @@ const OneStore = {
     },
 
     loadProducts(id) {
-        axios.get(`${apiPrefix}:${serverPort}/product/${id}?queueId=${uniqueUserId}`)
+        axios.get(`${apiPrefix}:${serverPort}/product/${id}?queueId=${uniqueUserId}`,{withCredentials: true})
             .then(function (response) {
                 store.dispatch({type: 'CLEAR', data: response.data});
             })
@@ -88,19 +88,29 @@ const OneStore = {
 
 function products(state = {
     status: false,
-    data: 'Нет такого товара:('
+    data: 'Нет такого товара:(',
+    count: 0
 }, action) {
     switch (action.type) {
         case 'LOAD':
             return {
                 status: true,
-                data: action.data
+                data: action.data.data,
+                count: action.data.count
             };
         case 'CLEAR':
             return {
                 status: false,
                 data: action.data
             };
+        case 'UPDATE_OPEN': {
+            return {
+                status:true,
+                data:action.data.data,
+                count:action.data.count,
+                open: action.data.open
+            };
+        }
         default :
             return state;
     }

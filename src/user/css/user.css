@@ -90,6 +90,12 @@
     text-align: right;
 }
 
+#modalHeader{
+    font-weight:100;
+    margin-bottom: 50px;
+    font-family: 'Open Sans', sans-serif;
+}
+
 @media only screen and (max-width: 540px) {
     .oneUser {
         flex-wrap: wrap;
@@ -104,7 +110,7 @@
     #userButtonServer {
         display: flex;
         flex-direction: column;
-        line-height: 20px;
+        line-height: 8px;
         text-align: center;
     }
 

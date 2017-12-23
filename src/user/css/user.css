@@ -153,3 +153,22 @@
         margin-bottom: 15px;
     }
 }
+
+@media only screen and (max-width: 866px) {
+    .userOrderConfirm{
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+    .delivered{
+        margin-top: 10px;
+    }
+    .progressBar{
+        margin-top: 0;
+    }
+    #confirmOrder{
+        margin-top: 10px;
+    }
+    .confirmOrderBlock{
+        width: 320px;
+    }
+}

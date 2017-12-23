@@ -36,9 +36,9 @@ const Orders = createReactClass({
 
     confirmOrder: function (item) {
         axios.post(`${apiPrefix}:${serverPort}/order/confirm`, {
-            id: item.products_snapshot.id
+            id: item.id
         }).then(function (response) {
-            if (response = 'sucess') {
+            if (response.data === 'sucess') {
                 OrderStore.loadProducts();
             }
         }).catch(function (error) {
@@ -64,13 +64,13 @@ const Orders = createReactClass({
                             <div className={'confirmOrderBlock'}>
                                 <div>
                                     <Progress
-                                        completed={((((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.products_snapshot.posted / 1000 / 60)) * 25) > 75) && (item.products_snapshot.delivered))
+                                        completed={((((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25) >= 75) && (item.delivered))
                                             ? 100 :
-                                            ((((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.products_snapshot.posted / 1000 / 60)) * 25) > 75) && (!item.products_snapshot.delivered))
+                                            ((((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25) > 75) && (!item.delivered))
                                                 ? 75 :
-                                                ((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.products_snapshot.posted / 1000 / 60)) * 25) > 100
+                                                ((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25) > 100
                                                     ? 100
-                                                    : ((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.products_snapshot.posted / 1000 / 60)) * 25)}
+                                                    : ((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25)}
                                         className={'progressBar'} color={'#fff'} height={3}
                                         border-radius={'2px'}/>
                                 </div>
@@ -86,10 +86,14 @@ const Orders = createReactClass({
                                     <div>Доставлен</div>
                                     <div>Получен</div>
                                 </div>
-                                <button type='submit' className='sendButton' id={"confirmOrder"}
-                                        onClick={() => this.confirmOrder(item)}>Подтвердить
-                                    получение
-                                </button>
+                                {((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25) < 75 ?
+                                    <div className={"delivered"}>Товар еще не прибыл</div>
+                                    : ((((Math.floor(Date.now() / 1000 / 60) - Math.floor(item.posted / 1000 / 60)) * 25) >= 75) && (item.delivered)) ?
+                                        <div className={"delivered"}>Товар получен</div> :
+                                        <button type='submit' className='sendButton' id={"confirmOrder"}
+                                                onClick={() => this.confirmOrder(item)}>Подтвердить
+                                            получение
+                                        </button>}
                             </div>
                         </div>
                     ))}

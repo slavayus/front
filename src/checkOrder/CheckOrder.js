@@ -13,6 +13,7 @@ let currentThis;
 const CheckOrder = createReactClass({
 
     getInitialState() {
+        code = '';
         return {
             codeStatus: "check"
         };

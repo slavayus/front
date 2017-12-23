@@ -42,6 +42,37 @@
     flex-grow: 1;
 }
 
+#userOrders{
+    flex-direction: column;
+    align-items: center;
+}
+
+.userOrderConfirm{
+    display: flex;
+}
+
+.progressBar{
+    background-color: #222;
+    margin-top: 20px;
+}
+
+.confirmOrderBlock{
+    text-align: left;
+    width: 40vw;
+}
+
+#confirmOrder{
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+#breakPoints{
+    display: flex;
+    justify-content: space-around;
+}
+
 #emptyUser {
     width: 70%;
     display: flex;
